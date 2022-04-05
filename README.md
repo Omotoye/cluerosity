@@ -4,6 +4,6 @@
 
 # Cluerosity
 
->**Author: Omotoye Shamsudeen Adekoya**</br>
- **Email: adekoyaomotoye@gmail.com** </br>
- **Student ID: 5066348**
+>**Author: Omotoye Shamsudeen Adekoya**   
+ **Email: adekoyaomotoye@gmail.com**   
+ **Student ID: 5066348**   
