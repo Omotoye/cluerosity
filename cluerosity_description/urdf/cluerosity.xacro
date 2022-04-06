@@ -103,4 +103,154 @@
         <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
 
+    <!-- The Camera, Laser Gimbal system  -->
+
+    <!-- Gimbal Base  -->
+    <link name="gimbal_base">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.15 0.15 0.15" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="gimbal_base_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="gimbal_base" />
+        <origin xyz="0.20 -0.10 0.275" rpy="0 0 0" />
+    </joint>
+
+    <!-- Gimbal Pole  -->
+    <link name="gimbal_pole">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.0375" length="0.4" />
+            </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="gimbal_pole_joint" type="fixed">
+        <parent link="gimbal_base" />
+        <child link="gimbal_pole" />
+        <origin xyz="0 0 0.125" rpy="0 0 0" />
+    </joint>
+
+    <!-- Gimbal Yaw Link -->
+    <link name="gimbal_yaw_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="gimbal_yaw_joint" type="continuous">
+        <parent link="gimbal_pole" />
+        <child link="gimbal_yaw_link" />
+        <origin xyz="0 0 0.15" rpy="0 0 0" />
+        <axis xyz="0 0 1" rpy="0 0 0" />
+    </joint>
+
+    <!-- Gimbal Sensor Housing  -->
+    <link name="gimbal_sensor_housing">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.15 0.30 0.15" />
+            </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <visual>
+            <origin xyz="0.08 -0.05 0" rpy="0 1.5708 0" />
+            <geometry>
+                <cylinder radius="0.05" length="0.01" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="gimbal_sensor_housing_joint" type="revolute">
+        <parent link="gimbal_yaw_link" />
+        <child link="gimbal_sensor_housing" />
+        <origin xyz="0 0 0.125" rpy="0 0 0" />
+        <axis xyz="0 1 0" rpy="0 0 0" />
+        <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" />
+    </joint>
+
+
+    <!-- Velodyne LiDAR Sensor -->
+
+    <!-- Sensor Base -->
+    <link name="lidar_base">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="0.12 0.12 0.12" />
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="lidar_base_joint" type="fixed">
+        <parent link="base_link" />
+        <child link="lidar_base" />
+        <origin xyz="-0.215 0.115 0.26" rpy="0 0 0" />
+    </joint>
+
+    <!-- LiDAR Sensor -->
+    <link name="lidar_sensor">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.0515" length="0.036" />
+            </geometry>
+            <material name="bluish">
+                <color rgba="0.1373 0.1961 0.6471 0.8" />
+            </material>
+        </visual>
+        <visual>
+            <origin xyz="0 0 0.027" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.0515" length="0.018" />
+            </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+        <visual>
+            <origin xyz="0 0 -0.027" rpy="0 0 0" />
+            <geometry>
+                <cylinder radius="0.0515" length="0.018" />
+            </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="lidar_sensor_joint" type="fixed">
+        <parent link="lidar_base" />
+        <child link="lidar_sensor" />
+        <origin xyz="0 0 0.096" rpy="0 0 0" />
+    </joint>
+
+
 </robot>
