@@ -250,60 +250,36 @@
     <!-- Velodyne LiDAR Sensor -->
 
     <!-- Sensor Base -->
-    <!-- <link name="lidar_base">
+    <link name="lidar_base">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="-0.075 0 0.05" rpy="0 3.14159265359 1.5708" />
             <geometry>
-                <box size="0.12 0.12 0.12" />
+                <mesh filename="package://cluerosity_description/meshes/lidar_base.dae" />
             </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
-            </material>
         </visual>
     </link>
 
     <joint name="lidar_base_joint" type="fixed">
         <parent link="base_link" />
         <child link="lidar_base" />
-        <origin xyz="-0.215 0.115 0.26" rpy="0 0 0" />
-    </joint> -->
+        <origin xyz="-0.325 0.140 0.25" rpy="0 0 0" />
+    </joint>
 
     <!-- LiDAR Sensor -->
-    <!-- <link name="lidar_sensor">
+    <link name="lidar_sensor">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <cylinder radius="0.0515" length="0.036" />
+                <mesh filename="package://cluerosity_description/meshes/velodyne_lidar.dae" />
             </geometry>
-            <material name="bluish">
-                <color rgba="0.1373 0.1961 0.6471 0.8" />
-            </material>
-        </visual>
-        <visual>
-            <origin xyz="0 0 0.027" rpy="0 0 0" />
-            <geometry>
-                <cylinder radius="0.0515" length="0.018" />
-            </geometry>
-            <material name="white">
-                <color rgba="1 1 1 1" />
-            </material>
-        </visual>
-        <visual>
-            <origin xyz="0 0 -0.027" rpy="0 0 0" />
-            <geometry>
-                <cylinder radius="0.0515" length="0.018" />
-            </geometry>
-            <material name="white">
-                <color rgba="1 1 1 1" />
-            </material>
         </visual>
     </link>
 
     <joint name="lidar_sensor_joint" type="fixed">
         <parent link="lidar_base" />
         <child link="lidar_sensor" />
-        <origin xyz="0 0 0.096" rpy="0 0 0" />
-    </joint> -->
+        <origin xyz="-0.2 0 0.05" rpy="0 0 0" />
+    </joint>
 
 
 </robot>
