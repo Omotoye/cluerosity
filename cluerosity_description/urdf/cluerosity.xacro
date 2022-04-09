@@ -3,13 +3,17 @@
 
     <link name="base_link">
         <visual>
-            <origin rpy="0 0 0" xyz="0 0 0.1" />
+            <origin rpy="0 3.14159265359 -1.5708" xyz="0 0 0.15" />
             <geometry>
-                <box size="0.6 0.4 0.2" />
+                <!-- <box size="0.6 0.4 0.2" /> -->
+                <mesh filename="package://cluerosity_description/meshes/robot_base.dae" />
             </geometry>
-            <material name="cyan">
+            <!-- <material name="cyan">
                 <color rgba="0 1.0 1.0 1.0" />
-            </material>
+            </material> -->
+            <!-- <material name="white">
+                <color rgba="1 1 1 1" />
+            </material> -->
         </visual>
     </link>
 
@@ -22,91 +26,140 @@
         <child link="base_footprint" />
     </joint>
 
+    <link name="front_shaft">
+        <visual>
+            <origin rpy="1.5708 0 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder radius="0.010" length="0.550" />
+            </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="front_shaft_joint" type="fixed">
+        <origin xyz="0.350 0 0.05" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="front_shaft" />
+    </joint>
+
+    <link name="rear_shaft">
+        <visual>
+            <origin rpy="1.5708 0 0" xyz="0 0 0" />
+            <geometry>
+                <cylinder radius="0.010" length="0.550" />
+            </geometry>
+            <material name="white">
+                <color rgba="1 1 1 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="rear_shaft_joint" type="fixed">
+        <origin xyz="-0.20 0 0.05" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="rear_shaft" />
+    </joint>
+
+
     <!-- Wheel definition -->
 
     <!-- RIGHT WHEEL  -->
     <link name="right_front_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <visual name="tyre">
+            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
             <geometry>
-                <cylinder radius="0.175" length="0.15" />
+                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
             </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
-            </material>
+        </visual>
+        <visual name="rim">
+            <origin xyz="0  0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
+            </geometry>
         </visual>
     </link>
 
     <joint name="right_front_wheel_joint" type="continuous">
         <parent link="base_link" />
         <child link="right_front_wheel" />
-        <origin xyz="0.3 -0.30 0.045" rpy="0 0 0" />
+        <origin xyz="0.35 -0.30 0.05" rpy="0 0 0" />
         <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
 
     <link name="right_back_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <visual name="tyre">
+            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
             <geometry>
-                <cylinder radius="0.175" length="0.15" />
+                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
             </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
-            </material>
+        </visual>
+        <visual name="rim">
+            <origin xyz="0  0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
+            </geometry>
         </visual>
     </link>
 
     <joint name="right_back_wheel_joint" type="continuous">
         <parent link="base_link" />
         <child link="right_back_wheel" />
-        <origin xyz="-0.3 -0.30 0.045" rpy="0 0 0" />
+        <origin xyz="-0.20 -0.30 0.05" rpy="0 0 0" />
         <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
 
     <!-- LEFT WHEEL -->
 
     <link name="left_front_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <visual name="tyre">
+            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
             <geometry>
-                <cylinder radius="0.175" length="0.15" />
+                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
             </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
-            </material>
+        </visual>
+        <visual name="rim">
+            <origin xyz="0  0 0" rpy="0 0 3.14159265359" />
+            <geometry>
+                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
+            </geometry>
         </visual>
     </link>
 
     <joint name="left_front_wheel_joint" type="continuous">
         <parent link="base_link" />
         <child link="left_front_wheel" />
-        <origin xyz="0.3 0.30 0.045" rpy="0 0 0" />
+        <origin xyz="0.35 0.30 0.05" rpy="0 0 0" />
         <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
 
     <link name="left_back_wheel">
-        <visual>
-            <origin xyz="0 0 0" rpy="1.5708 0 0" />
+        <visual name="tyre">
+            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
             <geometry>
-                <cylinder radius="0.175" length="0.15" />
+                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
             </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
-            </material>
+        </visual>
+        <visual name="rim">
+            <origin xyz="0  0 0" rpy="0 0 3.14159265359" />
+            <geometry>
+                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
+            </geometry>
         </visual>
     </link>
 
     <joint name="left_back_wheel_joint" type="continuous">
         <parent link="base_link" />
         <child link="left_back_wheel" />
-        <origin xyz="-0.3 0.30 0.045" rpy="0 0 0" />
+        <origin xyz="-0.20 0.30 0.05" rpy="0 0 0" />
         <axis xyz="0 1 0" rpy="0 0 0" />
     </joint>
 
     <!-- The Camera, Laser Gimbal system  -->
 
     <!-- Gimbal Base  -->
-    <link name="gimbal_base">
+    <!-- <link name="gimbal_base">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -122,10 +175,10 @@
         <parent link="base_link" />
         <child link="gimbal_base" />
         <origin xyz="0.20 -0.10 0.275" rpy="0 0 0" />
-    </joint>
+    </joint> -->
 
     <!-- Gimbal Pole  -->
-    <link name="gimbal_pole">
+    <!-- <link name="gimbal_pole">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -141,10 +194,10 @@
         <parent link="gimbal_base" />
         <child link="gimbal_pole" />
         <origin xyz="0 0 0.125" rpy="0 0 0" />
-    </joint>
+    </joint> -->
 
     <!-- Gimbal Yaw Link -->
-    <link name="gimbal_yaw_link">
+    <!-- <link name="gimbal_yaw_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -161,10 +214,10 @@
         <child link="gimbal_yaw_link" />
         <origin xyz="0 0 0.15" rpy="0 0 0" />
         <axis xyz="0 0 1" rpy="0 0 0" />
-    </joint>
+    </joint> -->
 
     <!-- Gimbal Sensor Housing  -->
-    <link name="gimbal_sensor_housing">
+    <!-- <link name="gimbal_sensor_housing">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -191,13 +244,13 @@
         <origin xyz="0 0 0.125" rpy="0 0 0" />
         <axis xyz="0 1 0" rpy="0 0 0" />
         <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" />
-    </joint>
+    </joint> -->
 
 
     <!-- Velodyne LiDAR Sensor -->
 
     <!-- Sensor Base -->
-    <link name="lidar_base">
+    <!-- <link name="lidar_base">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -213,10 +266,10 @@
         <parent link="base_link" />
         <child link="lidar_base" />
         <origin xyz="-0.215 0.115 0.26" rpy="0 0 0" />
-    </joint>
+    </joint> -->
 
     <!-- LiDAR Sensor -->
-    <link name="lidar_sensor">
+    <!-- <link name="lidar_sensor">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
@@ -250,7 +303,7 @@
         <parent link="lidar_base" />
         <child link="lidar_sensor" />
         <origin xyz="0 0 0.096" rpy="0 0 0" />
-    </joint>
+    </joint> -->
 
 
 </robot>
