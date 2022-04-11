@@ -1,0 +1,62 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <material name="dark_gray">
+        <color rgba="0.35 0.38 0.4 1" />
+    </material>
+
+    <xacro:macro name="gimbal_base">
+        <link name="gimbal_base">
+            <visual>
+                <origin xyz="0 0 0.025" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.1 0.1 0.05" />
+                </geometry>
+                <material name="dark_gray" />
+            </visual>
+        </link>
+
+        <joint name="gimbal_base_joint" type="fixed">
+            <parent link="base_link" />
+            <child link="gimbal_base" />
+            <origin xyz="0.340 -0.140 0.1" rpy="0 0 ${pi/2}" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="gimbal_axle">
+        <link name="gimbal_axle">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="${gimbal_axle}" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="gimbal_axle_joint" type="continuous">
+            <parent link="gimbal_base" />
+            <child link="gimbal_axle" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <axis xyz="0 0 1" rpy="0 0 0" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="sensor_housing">
+        <link name="sensor_housing">
+            <visual>
+                <origin xyz="0 0 0.053" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="${sensor_housing}" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="sensor_housing_joint" type="revolute">
+            <parent link="stepper_motor" />
+            <child link="sensor_housing" />
+            <origin xyz="0.122 0 0" rpy="0 0 0" />
+            <axis xyz="1 0 0" rpy="0 0 0" />
+            <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" />
+        </joint>
+    </xacro:macro>
+
+</robot>

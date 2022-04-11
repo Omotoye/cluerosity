@@ -89,12 +89,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        left_back_wheel:
+        left_front_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_front_wheel:
+        left_rear_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -114,12 +114,12 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        right_back_wheel:
+        right_front_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        right_front_wheel:
+        right_rear_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -155,9 +155,9 @@ Visualization Manager:
           Value: false
         gimbal_base:
           Value: false
-        left_back_wheel:
-          Value: false
         left_front_wheel:
+          Value: false
+        left_rear_wheel:
           Value: false
         lidar_base:
           Value: false
@@ -165,9 +165,9 @@ Visualization Manager:
           Value: false
         rear_shaft:
           Value: false
-        right_back_wheel:
-          Value: false
         right_front_wheel:
+          Value: false
+        right_rear_wheel:
           Value: false
         sensor_housing:
           Value: false
@@ -190,18 +190,18 @@ Visualization Manager:
               stepper_motor:
                 sensor_housing:
                   {}
-          left_back_wheel:
-            {}
           left_front_wheel:
+            {}
+          left_rear_wheel:
             {}
           lidar_base:
             lidar_sensor:
               {}
           rear_shaft:
             {}
-          right_back_wheel:
-            {}
           right_front_wheel:
+            {}
+          right_rear_wheel:
             {}
       Update Interval: 0
       Value: true
@@ -278,5 +278,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1406
-  X: 199
-  Y: 138
+  X: 167
+  Y: 106

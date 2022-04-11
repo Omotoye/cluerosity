@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="robot_base" value="package://cluerosity_description/meshes/robot_base.dae" />
+    <xacro:property name="tyre" value="package://cluerosity_description/meshes/tyre.dae" />
+    <xacro:property name="rim" value="package://cluerosity_description/meshes/rim.dae" />
+    <xacro:property name="gimbal_axle" value="package://cluerosity_description/meshes/gimbal_axle.dae" />
+    <xacro:property name="stepper_motor" value="package://cluerosity_description/meshes/stepper_motor.dae" />
+    <xacro:property name="sensor_housing" value="package://cluerosity_description/meshes/sensor_housing.dae" />
+    <xacro:property name="lidar_base" value="package://cluerosity_description/meshes/lidar_base.dae" />
+    <xacro:property name="lidar_sensor" value="package://cluerosity_description/meshes/velodyne_lidar.dae" />
+</robot>

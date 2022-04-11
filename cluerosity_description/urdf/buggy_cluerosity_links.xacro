@@ -1,0 +1,63 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Default Properties -->
+    <xacro:property name="axis_xyz" value="0 0 0" />
+    <xacro:property name="axis_rpy" value="0 0 0" />
+    <xacro:property name="lower" value="0" />
+    <xacro:property name="upper" value="3.142" />
+    <xacro:property name="material_use" value="false" />
+    <xacro:property name="material_name" value="None" />
+    <xacro:property name="rgba" value="0 0 0 0" />
+    <xacro:property name="mesh_use" value="false" />
+    <xacro:property name="mesh_name" value="None" />
+    <xacro:property name="box_use" value="false" />
+    <xacro:property name="box_xyz" value="0 0 0" />
+    <xacro:property name="cylinder_use" value="false" />
+    <xacro:property name="cylinder_radius" value="0" />
+    <xacro:property name="cylinder_length" value="0" />
+
+
+    <xacro:macro 
+        name="cluerosity_link" 
+        params="name link_xyz link_rpy mesh_use:=^ mesh_name:=^ box_use:=^ box_xyz:=^ cylinder_use:=^ cylinder_radius:=^ cylinder_length:=^ axis_xyz:=^ axis_rpy:=^ lower:=^ upper:=^ material_use:=^ material_name:=^ rgba:=^  joint_type joint_xyz joint_rpy parent">
+        
+        <link name="${name}">
+            <visual>
+                <origin xyz="${link_xyz}" rpy="${link_rpy}" />
+                <xacro:if value="${mesh_use == 'true'}">
+                    <geometry>
+                        <mesh filename="${mesh_name}" />
+                    </geometry>
+                </xacro:if>
+                <xacro:if value="${box_use == 'true'}">
+                    <geometry>
+                        <box size="${box_xyz}" />
+                    </geometry>
+                </xacro:if>
+                <xacro:if value="${cylinder_use == 'true'}">
+                    <geometry>
+                        <cylinder radius="${cylinder_radius}" length="${cylinder_length}" />
+                    </geometry>
+                </xacro:if>
+                <xacro:if value="${material_use == 'true'}">
+                    <material name="${material_name}">
+                        <color rgba="${rgba}" />
+                    </material>
+                </xacro:if>
+            </visual>
+        </link>
+
+        <joint name="${name}_joint" type="${joint_type}">
+            <parent link="${parent}" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+            <xacro:if value="${((joint_type == 'continuous') or (joint_type == 'revolute'))}">
+                <axis xyz="${axis_xyz}" rpy="${axis_rpy}" />
+            </xacro:if>
+            <xacro:if value="${joint_type == 'revolute'}">
+                <limit effort="1000.0" lower="${lower}" upper="${upper}" velocity="0.5" />
+            </xacro:if>
+        </joint>
+    </xacro:macro>
+
+</robot>

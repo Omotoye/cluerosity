@@ -1,0 +1,62 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find cluerosity_description)/urdf/materials.xacro" />
+
+    <xacro:macro name="fixed_link" params="name link_xyz link_rpy mesh_name joint_xyz joint_rpy parent">
+
+        <link name="${name}">
+            <visual>
+                <origin xyz="${link_xyz}" rpy="${link_rpy}" />
+                <geometry>
+                    <mesh filename="${mesh_name}" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="${name}_joint" type="fixed">
+            <parent link="${parent}" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="cluerosity_shaft" params="name joint_xyz">
+
+        <link name="${name}">
+            <visual>
+                <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+                <geometry>
+                    <cylinder radius="0.010" length="0.550" />
+                </geometry>
+                <material name="white" />
+            </visual>
+        </link>
+
+        <joint name="${name}_joint" type="fixed">
+            <parent link="base_link" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="0 0 0" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="base_link">
+        <link name="base_link">
+            <visual>
+                <origin rpy="0 ${pi} ${-pi/2}" xyz="0 0 0.15" />
+                <geometry>
+                    <mesh filename="${robot_base}" />
+                </geometry>
+            </visual>
+        </link>
+
+        <!-- Base footprint is on the ground under the robot -->
+        <link name="base_footprint" />
+
+        <joint name="base_footprint_joint" type="fixed">
+            <origin xyz="0 0 -0.14" rpy="0 0 0" />
+            <parent link="base_link" />
+            <child link="base_footprint" />
+        </joint>
+    </xacro:macro>
+
+</robot>

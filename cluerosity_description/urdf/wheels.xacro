@@ -1,0 +1,30 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Includes -->
+    <xacro:include filename="$(find cluerosity_description)/urdf/meshes.xacro" />
+
+    <xacro:macro name="cluerosity_wheel" params="name tyre_xyz tyre_rpy rim_xyz rim_rpy joint_xyz joint_rpy">
+        <link name="${name}">
+            <visual name="tyre">
+                <origin xyz="${tyre_xyz}" rpy="${tyre_rpy}" />
+                <geometry>
+                    <mesh filename="${tyre}" />
+                </geometry>
+            </visual>
+            <visual name="rim">
+                <origin xyz="${rim_xyz}" rpy="${rim_rpy}" />
+                <geometry>
+                    <mesh filename="${rim}" />
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name="${name}_joint" type="continuous">
+            <parent link="base_link" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+            <axis xyz="0 1 0" rpy="0 0 0" />
+        </joint>
+    </xacro:macro>
+    
+</robot>

@@ -1,259 +1,116 @@
 <?xml version="1.0"?>
 <robot name="cluerosity" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <link name="base_link">
-        <visual>
-            <origin rpy="0 3.14159265359 -1.5708" xyz="0 0 0.15" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/robot_base.dae" />
-            </geometry>
-        </visual>
-    </link>
+    <!-- Includes -->
+    <xacro:include filename="$(find cluerosity_description)/urdf/meshes.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/wheels.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/sensor_gimbal.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/cluerosity_links.xacro" />
 
-    <!-- Base footprint is on the ground under the robot -->
-    <link name="base_footprint" />
+    <!-- Properties -->
+    <xacro:property name="pi" value="3.14159265359" />
 
-    <joint name="base_footprint_joint" type="fixed">
-        <origin xyz="0 0 -0.14" rpy="0 0 0" />
-        <parent link="base_link" />
-        <child link="base_footprint" />
-    </joint>
-
-    <link name="front_shaft">
-        <visual>
-            <origin rpy="1.5708 0 0" xyz="0 0 0" />
-            <geometry>
-                <cylinder radius="0.010" length="0.550" />
-            </geometry>
-            <material name="white">
-                <color rgba="1 1 1 1" />
-            </material>
-        </visual>
-    </link>
-
-    <joint name="front_shaft_joint" type="fixed">
-        <origin xyz="0.350 0 0.05" rpy="0 0 0" />
-        <parent link="base_link" />
-        <child link="front_shaft" />
-    </joint>
-
-    <link name="rear_shaft">
-        <visual>
-            <origin rpy="1.5708 0 0" xyz="0 0 0" />
-            <geometry>
-                <cylinder radius="0.010" length="0.550" />
-            </geometry>
-            <material name="white">
-                <color rgba="1 1 1 1" />
-            </material>
-        </visual>
-    </link>
-
-    <joint name="rear_shaft_joint" type="fixed">
-        <origin xyz="-0.20 0 0.05" rpy="0 0 0" />
-        <parent link="base_link" />
-        <child link="rear_shaft" />
-    </joint>
+    <!-- 
+        +=====================+
+        |      Base Link      |
+        +=====================+ 
+    -->
+    <xacro:base_link/>
 
 
-    <!-- Wheel definition -->
+    <!-- 
+        +=====================+
+        |     Wheel Shaft     |
+        +=====================+ 
+    -->
+    <xacro:cluerosity_shaft 
+        name="front_shaft" 
+        joint_xyz="0.350 0 0.05" />
 
-    <!-- RIGHT WHEEL  -->
-    <link name="right_front_wheel">
-        <visual name="tyre">
-            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
-            </geometry>
-        </visual>
-        <visual name="rim">
-            <origin xyz="0  0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
-            </geometry>
-        </visual>
-    </link>
+    <xacro:cluerosity_shaft 
+        name="rear_shaft" 
+        joint_xyz="-0.20 0 0.05" />
 
-    <joint name="right_front_wheel_joint" type="continuous">
-        <parent link="base_link" />
-        <child link="right_front_wheel" />
-        <origin xyz="0.35 -0.30 0.05" rpy="0 0 0" />
-        <axis xyz="0 1 0" rpy="0 0 0" />
-    </joint>
 
-    <link name="right_back_wheel">
-        <visual name="tyre">
-            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
-            </geometry>
-        </visual>
-        <visual name="rim">
-            <origin xyz="0  0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
-            </geometry>
-        </visual>
-    </link>
+    <!-- 
+        +=====================+
+        |   Wheel definition  |
+        +=====================+ 
+    -->
 
-    <joint name="right_back_wheel_joint" type="continuous">
-        <parent link="base_link" />
-        <child link="right_back_wheel" />
-        <origin xyz="-0.20 -0.30 0.05" rpy="0 0 0" />
-        <axis xyz="0 1 0" rpy="0 0 0" />
-    </joint>
+    <!-- Right Front Wheel -->
+    <xacro:cluerosity_wheel 
+        name="right_front_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${pi/2} 0 ${-pi/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 0" 
+        joint_xyz="0.35 -0.30 0.05" joint_rpy="0 0 0" />
 
-    <!-- LEFT WHEEL -->
+    <!-- Right Rear Wheel -->
+    <xacro:cluerosity_wheel 
+        name="right_rear_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${pi/2} 0 ${-pi/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 0" 
+        joint_xyz="-0.20 -0.30 0.05" joint_rpy="0 0 0" />
 
-    <link name="left_front_wheel">
-        <visual name="tyre">
-            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
-            </geometry>
-        </visual>
-        <visual name="rim">
-            <origin xyz="0  0 0" rpy="0 0 3.14159265359" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
-            </geometry>
-        </visual>
-    </link>
+    <!-- Left Front Wheel -->
+    <xacro:cluerosity_wheel 
+        name="left_front_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${pi/2} 0 ${-pi/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 ${pi}" 
+        joint_xyz="0.35 0.30 0.05" joint_rpy="0 0 0" />
 
-    <joint name="left_front_wheel_joint" type="continuous">
-        <parent link="base_link" />
-        <child link="left_front_wheel" />
-        <origin xyz="0.35 0.30 0.05" rpy="0 0 0" />
-        <axis xyz="0 1 0" rpy="0 0 0" />
-    </joint>
+    <!-- Left Rear Wheel -->
+    <xacro:cluerosity_wheel 
+        name="left_rear_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${pi/2} 0 ${-pi/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 ${pi}" 
+        joint_xyz="-0.20 0.30 0.05" joint_rpy="0 0 0" />
 
-    <link name="left_back_wheel">
-        <visual name="tyre">
-            <origin xyz="-0.14686986  0 0" rpy="1.5708 0 -1.5708" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/tyre.dae" />
-            </geometry>
-        </visual>
-        <visual name="rim">
-            <origin xyz="0  0 0" rpy="0 0 3.14159265359" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/rim.dae" />
-            </geometry>
-        </visual>
-    </link>
 
-    <joint name="left_back_wheel_joint" type="continuous">
-        <parent link="base_link" />
-        <child link="left_back_wheel" />
-        <origin xyz="-0.20 0.30 0.05" rpy="0 0 0" />
-        <axis xyz="0 1 0" rpy="0 0 0" />
-    </joint>
-
-    <!-- The Camera, Laser Gimbal system  -->
+    <!-- 
+        +=====================+
+        |   Sensor Gimbal     |
+        +=====================+ 
+    -->
 
     <!-- Gimbal Base  -->
-    <link name="gimbal_base">
-        <visual>
-            <origin xyz="0 0 0.025" rpy="0 0 0" />
-            <geometry>
-                <box size="0.1 0.1 0.05" />
-            </geometry>
-            <material name="dark_gray">
-                <color rgba="0.35 0.38 0.4 1" />
-            </material>
-        </visual>
-    </link>
-
-    <joint name="gimbal_base_joint" type="fixed">
-        <parent link="base_link" />
-        <child link="gimbal_base" />
-        <origin xyz="0.340 -0.140 0.1" rpy="0 0 1.5708" />
-    </joint>
+    <xacro:gimbal_base />
 
     <!-- Gimbal Axle  -->
-    <link name="gimbal_axle">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/gimbal_axle.dae" />
-            </geometry>
-        </visual>
-    </link>
-
-    <joint name="gimbal_axle_joint" type="continuous">
-        <parent link="gimbal_base" />
-        <child link="gimbal_axle" />
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <axis xyz="0 0 1" rpy="0 0 0" />
-    </joint>
-
-    <!-- Stepper Motor  -->
-    <link name="stepper_motor">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 1.5708 0" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/stepper_motor.dae" />
-            </geometry>
-        </visual>
-    </link>
-
-    <joint name="stepper_motor_joint" type="fixed">
-        <parent link="gimbal_axle" />
-        <child link="stepper_motor" />
-        <origin xyz="-0.10 0 0.19" rpy="0 0 0" />
-    </joint>
+    <xacro:gimbal_axle />
 
     <!-- Gimbal Sensor Housing  -->
-    <link name="sensor_housing">
-        <visual>
-            <origin xyz="0 0 0.053" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/sensor_housing.dae" />
-            </geometry>
-        </visual>
-    </link>
+    <xacro:sensor_housing />
 
-    <joint name="sensor_housing_joint" type="revolute">
-        <parent link="stepper_motor" />
-        <child link="sensor_housing" />
-        <origin xyz="0.122 0 0" rpy="0 0 0" />
-        <axis xyz="1 0 0" rpy="0 0 0" />
-        <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" />
-    </joint>
+    <!-- Stepper Motor -->
+    <xacro:fixed_link 
+        name="stepper_motor" 
+        link_xyz="0 0 0" link_rpy="0 ${pi/2} 0" 
+        mesh_name="${stepper_motor}" 
+        joint_xyz="-0.10 0 0.19" joint_rpy="0 0 0" 
+        parent="gimbal_axle" />
 
-    <!-- Velodyne LiDAR Sensor -->
 
-    <!-- Sensor Base -->
-    <link name="lidar_base">
-        <visual>
-            <origin xyz="-0.075 0 0.05" rpy="0 3.14159265359 1.5708" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/lidar_base.dae" />
-            </geometry>
-        </visual>
-    </link>
+    <!-- 
+        +=======================+
+        | Velodyne LiDAR Sensor |
+        +=======================+ 
+    -->   
 
-    <joint name="lidar_base_joint" type="fixed">
-        <parent link="base_link" />
-        <child link="lidar_base" />
-        <origin xyz="-0.325 0.140 0.25" rpy="0 0 0" />
-    </joint>
+    <!-- LiDAR Base -->
+    <xacro:fixed_link 
+        name="lidar_base" 
+        link_xyz="-0.075 0 0.05" link_rpy="0 ${pi} ${pi/2}" 
+        mesh_name="${lidar_base}" 
+        joint_xyz="-0.325 0.140 0.25" joint_rpy="0 0 0" 
+        parent="base_link" />
 
     <!-- LiDAR Sensor -->
-    <link name="lidar_sensor">
-        <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <geometry>
-                <mesh filename="package://cluerosity_description/meshes/velodyne_lidar.dae" />
-            </geometry>
-        </visual>
-    </link>
-
-    <joint name="lidar_sensor_joint" type="fixed">
-        <parent link="lidar_base" />
-        <child link="lidar_sensor" />
-        <origin xyz="-0.2 0 0.05" rpy="0 0 0" />
-    </joint>
-
+    <xacro:fixed_link 
+        name="lidar_sensor" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${lidar_sensor}" 
+        joint_xyz="-0.2 0 0.05" joint_rpy="0 0 0" 
+        parent="lidar_base" />
 
 </robot>
