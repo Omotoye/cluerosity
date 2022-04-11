@@ -79,12 +79,32 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        gimbal_axle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gimbal_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         left_back_wheel:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
         left_front_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lidar_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lidar_sensor:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -100,6 +120,16 @@ Visualization Manager:
           Show Trail: false
           Value: true
         right_front_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        sensor_housing:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        stepper_motor:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -121,15 +151,27 @@ Visualization Manager:
           Value: false
         front_shaft:
           Value: false
+        gimbal_axle:
+          Value: false
+        gimbal_base:
+          Value: false
         left_back_wheel:
           Value: false
         left_front_wheel:
+          Value: false
+        lidar_base:
+          Value: false
+        lidar_sensor:
           Value: false
         rear_shaft:
           Value: false
         right_back_wheel:
           Value: false
         right_front_wheel:
+          Value: false
+        sensor_housing:
+          Value: false
+        stepper_motor:
           Value: false
       Marker Alpha: 1
       Marker Scale: 1
@@ -143,10 +185,18 @@ Visualization Manager:
             {}
           front_shaft:
             {}
+          gimbal_base:
+            gimbal_axle:
+              stepper_motor:
+                sensor_housing:
+                  {}
           left_back_wheel:
             {}
           left_front_wheel:
             {}
+          lidar_base:
+            lidar_sensor:
+              {}
           rear_shaft:
             {}
           right_back_wheel:
@@ -192,7 +242,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.422112226486206
+      Distance: 2.037785768508911
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -208,9 +258,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4803979694843292
+      Pitch: 0.3303978443145752
       Target Frame: <Fixed Frame>
-      Yaw: 0.9803955554962158
+      Yaw: 0.5603957176208496
     Saved: ~
 Window Geometry:
   Displays:
@@ -228,5 +278,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1406
-  X: 509
-  Y: 336
+  X: 199
+  Y: 138

@@ -5,15 +5,8 @@
         <visual>
             <origin rpy="0 3.14159265359 -1.5708" xyz="0 0 0.15" />
             <geometry>
-                <!-- <box size="0.6 0.4 0.2" /> -->
                 <mesh filename="package://cluerosity_description/meshes/robot_base.dae" />
             </geometry>
-            <!-- <material name="cyan">
-                <color rgba="0 1.0 1.0 1.0" />
-            </material> -->
-            <!-- <material name="white">
-                <color rgba="1 1 1 1" />
-            </material> -->
         </visual>
     </link>
 
@@ -159,14 +152,14 @@
     <!-- The Camera, Laser Gimbal system  -->
 
     <!-- Gimbal Base  -->
-    <!-- <link name="gimbal_base">
+    <link name="gimbal_base">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0.025" rpy="0 0 0" />
             <geometry>
-                <box size="0.15 0.15 0.15" />
+                <box size="0.1 0.1 0.05" />
             </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
+            <material name="dark_gray">
+                <color rgba="0.35 0.38 0.4 1" />
             </material>
         </visual>
     </link>
@@ -174,78 +167,59 @@
     <joint name="gimbal_base_joint" type="fixed">
         <parent link="base_link" />
         <child link="gimbal_base" />
-        <origin xyz="0.20 -0.10 0.275" rpy="0 0 0" />
-    </joint> -->
+        <origin xyz="0.340 -0.140 0.1" rpy="0 0 1.5708" />
+    </joint>
 
-    <!-- Gimbal Pole  -->
-    <!-- <link name="gimbal_pole">
+    <!-- Gimbal Axle  -->
+    <link name="gimbal_axle">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <cylinder radius="0.0375" length="0.4" />
+                <mesh filename="package://cluerosity_description/meshes/gimbal_axle.dae" />
             </geometry>
-            <material name="white">
-                <color rgba="1 1 1 1" />
-            </material>
         </visual>
     </link>
 
-    <joint name="gimbal_pole_joint" type="fixed">
+    <joint name="gimbal_axle_joint" type="continuous">
         <parent link="gimbal_base" />
-        <child link="gimbal_pole" />
-        <origin xyz="0 0 0.125" rpy="0 0 0" />
-    </joint> -->
+        <child link="gimbal_axle" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <axis xyz="0 0 1" rpy="0 0 0" />
+    </joint>
 
-    <!-- Gimbal Yaw Link -->
-    <!-- <link name="gimbal_yaw_link">
+    <!-- Stepper Motor  -->
+    <link name="stepper_motor">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="0 1.5708 0" />
             <geometry>
-                <cylinder radius="0.1" length="0.05" />
+                <mesh filename="package://cluerosity_description/meshes/stepper_motor.dae" />
             </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
-            </material>
         </visual>
     </link>
 
-    <joint name="gimbal_yaw_joint" type="continuous">
-        <parent link="gimbal_pole" />
-        <child link="gimbal_yaw_link" />
-        <origin xyz="0 0 0.15" rpy="0 0 0" />
-        <axis xyz="0 0 1" rpy="0 0 0" />
-    </joint> -->
+    <joint name="stepper_motor_joint" type="fixed">
+        <parent link="gimbal_axle" />
+        <child link="stepper_motor" />
+        <origin xyz="-0.10 0 0.19" rpy="0 0 0" />
+    </joint>
 
     <!-- Gimbal Sensor Housing  -->
-    <!-- <link name="gimbal_sensor_housing">
+    <link name="sensor_housing">
         <visual>
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="0 0 0.053" rpy="0 0 0" />
             <geometry>
-                <box size="0.15 0.30 0.15" />
+                <mesh filename="package://cluerosity_description/meshes/sensor_housing.dae" />
             </geometry>
-            <material name="white">
-                <color rgba="1 1 1 1" />
-            </material>
-        </visual>
-        <visual>
-            <origin xyz="0.08 -0.05 0" rpy="0 1.5708 0" />
-            <geometry>
-                <cylinder radius="0.05" length="0.01" />
-            </geometry>
-            <material name="black">
-                <color rgba="0 0 0 1" />
-            </material>
         </visual>
     </link>
 
-    <joint name="gimbal_sensor_housing_joint" type="revolute">
-        <parent link="gimbal_yaw_link" />
-        <child link="gimbal_sensor_housing" />
-        <origin xyz="0 0 0.125" rpy="0 0 0" />
-        <axis xyz="0 1 0" rpy="0 0 0" />
+    <joint name="sensor_housing_joint" type="revolute">
+        <parent link="stepper_motor" />
+        <child link="sensor_housing" />
+        <origin xyz="0.122 0 0" rpy="0 0 0" />
+        <axis xyz="1 0 0" rpy="0 0 0" />
         <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" />
-    </joint> -->
-
+    </joint>
 
     <!-- Velodyne LiDAR Sensor -->
 
