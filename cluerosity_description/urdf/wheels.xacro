@@ -46,6 +46,14 @@
                 xyz="0 0 0" rpy="${PI/2} 0 0" 
                 radius="0.010" length="0.550"
                 material_name="white"/>
+            <xacro:cylinder_collision 
+                xyz="0 0 0" rpy="${PI/2} 0 0"  
+                radius="0.010" length="0.550"/>
+            <xacro:link_inertia 
+                xyz="0 0 0" rpy="${PI/2} 0 0"  
+                mass="0.30129837" 
+                ixx="0.00759711" ixy="0" ixz="0"  
+                iyy="0.00759711" iyz="0"  izz="0.00000377"/>
         </link>
 
         <joint name="${name}_joint" type="fixed">

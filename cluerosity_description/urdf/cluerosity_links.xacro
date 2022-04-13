@@ -7,11 +7,19 @@
         +==========================+ 
     -->
 
-    <xacro:macro name="fixed_link" params="name link_xyz link_rpy mesh_name joint_xyz joint_rpy parent">
+    <xacro:macro name="fixed_link" params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent">
         <link name="${name}">
             <xacro:mesh_link 
                 xyz="${link_xyz}" rpy="${link_rpy}" 
                 mesh_name="${mesh_name}"/>
+            <xacro:box_collision 
+                xyz="${collision_xyz}" rpy="${collision_rpy}"  
+                box_size="${collision_size}"/>
+            <xacro:link_inertia 
+                xyz="${collision_xyz}" rpy="${collision_rpy}"  
+                mass="${mass}" 
+                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"  
+                iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
         </link>
 
         <joint name="${name}_joint" type="fixed">
@@ -52,10 +60,10 @@
         <!-- Base footprint is on the ground under the robot -->
         <link name="base_footprint" />
 
-        <joint name="base_footprint_joint" type="fixed">
-            <origin xyz="0 0 -0.14" rpy="0 0 0" />
-            <parent link="base_link" />
-            <child link="base_footprint" />
+        <joint name="base_link_joint" type="fixed">
+            <origin xyz="0 0 0.115" rpy="0 0 0" />
+            <parent link="base_footprint" />
+            <child link="base_link" />
         </joint>
     </xacro:macro>
 
@@ -73,6 +81,14 @@
                 xyz="0 0 0.025" rpy="0 0 0" 
                 box_size="0.1 0.1 0.05"
                 material_name="dark_gray"/>
+            <xacro:box_collision 
+                xyz="0 0 0.025" rpy="0 0 0" 
+                box_size="0.1 0.1 0.05"/>
+            <xacro:link_inertia 
+                xyz="0 0 0.025" rpy="0 0 0" 
+                mass="3.4875" 
+                ixx="0.004" ixy="0" ixz="0"  
+                iyy="0.004" iyz="0"  izz="0.006"/>
         </link>
 
         <joint name="gimbal_base_joint" type="fixed">
@@ -88,6 +104,14 @@
             <xacro:mesh_link 
                 xyz="0 0 0" rpy="0 0 0" 
                 mesh_name="${mesh_name}"/>
+            <xacro:box_collision 
+                xyz="0 0 0.12" rpy="0 0 0" 
+                box_size="0.07 0.07 0.190"/>
+            <xacro:link_inertia 
+                xyz="0 0 0.12" rpy="0 0 0" 
+                mass="0.86030554" 
+                ixx="0.00159531" ixy="0" ixz="0"  
+                iyy="0.00204855" iyz="0"  izz="0.00078318"/>
         </link>
 
         <joint name="gimbal_axle_joint" type="continuous">
@@ -104,6 +128,14 @@
             <xacro:mesh_link 
                 xyz="0 0 0.053" rpy="0 0 0" 
                 mesh_name="${mesh_name}"/>
+            <xacro:box_collision 
+                xyz="0 0 0.105" rpy="0 0 0" 
+                box_size="0.200 0.100 0.150"/>
+            <xacro:link_inertia 
+                xyz="0 0 0.105" rpy="0 0 0" 
+                mass="2.14582602" 
+                ixx="0.00498945" ixy="-0.00002479" ixz="0.0002252"  
+                iyy="0.00883757" iyz="-0.00005538"  izz="0.00675851"/>
         </link>
 
         <joint name="sensor_housing_joint" type="revolute">
