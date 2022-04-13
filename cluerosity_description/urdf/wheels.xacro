@@ -1,33 +1,57 @@
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <!-- Includes -->
-    <xacro:include filename="$(find cluerosity_description)/urdf/meshes.xacro" />
-    <xacro:include filename="$(find cluerosity_description)/urdf/wheel_physics.xacro" />
+    <!-- 
+        +==================================+
+        |      Wheel Definition Macro      |
+        +=================================+ 
+    -->
 
     <xacro:macro name="cluerosity_wheel" params="name tyre_xyz tyre_rpy rim_xyz rim_rpy joint_xyz joint_rpy">
         <link name="${name}">
-            <visual name="tyre">
-                <origin xyz="${tyre_xyz}" rpy="${tyre_rpy}" />
-                <geometry>
-                    <mesh filename="${tyre}" />
-                </geometry>
-            </visual>
-            <visual name="rim">
-                <origin xyz="${rim_xyz}" rpy="${rim_rpy}" />
-                <geometry>
-                    <mesh filename="${rim}" />
-                </geometry>
-            </visual>
-            <xacro:wheel_physics />
-
+            <xacro:mesh_link 
+                xyz="${tyre_xyz}" rpy="${tyre_rpy}" 
+                mesh_name="${tyre}"/>
+            <xacro:mesh_link 
+                xyz="${rim_xyz}" rpy="${rim_rpy}" 
+                mesh_name="${rim}"/>
+            <xacro:cylinder_collision 
+                xyz="0 0 0" rpy="${PI/2} 0 0"  
+                length="0.15" radius="0.165" />
+            <xacro:link_inertia 
+                xyz="0 0 0" rpy="${PI/2} 0 0"  
+                mass="5.52250093" 
+                ixx="0.13326254" ixy="0" ixz="0"  
+                iyy="0.07660474" iyz="0"  izz="0.077"/>
         </link>
-
 
         <joint name="${name}_joint" type="continuous">
             <parent link="base_link" />
             <child link="${name}" />
             <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
             <axis xyz="0 1 0" rpy="0 0 0" />
+        </joint>
+    </xacro:macro>
+
+    
+    <!-- 
+        +=============================+
+        |      Wheel Shaft Macro      |
+        +============================+ 
+    -->
+
+    <xacro:macro name="cluerosity_shaft" params="name joint_xyz">
+        <link name="${name}">
+            <xacro:cylinder_link 
+                xyz="0 0 0" rpy="${PI/2} 0 0" 
+                radius="0.010" length="0.550"
+                material_name="white"/>
+        </link>
+
+        <joint name="${name}_joint" type="fixed">
+            <parent link="base_link" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="0 0 0" />
         </joint>
     </xacro:macro>
 

@@ -1,5 +1,7 @@
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
+    <!-- Box Collsion -->
     <xacro:macro name="box_collision" params="xyz rpy box_size">
         <collision>
             <origin xyz="${xyz}" rpy="${rpy}" />
@@ -9,6 +11,7 @@
         </collision>
     </xacro:macro>
 
+    <!-- Cylindrical Collision  -->
     <xacro:macro name="cylinder_collision" params="xyz rpy length radius">
         <collision>
             <origin xyz="${xyz}" rpy="${rpy}" />
@@ -18,6 +21,7 @@
         </collision>
     </xacro:macro>
 
+    <!-- Mass Properties: Inertial definition -->
     <xacro:macro name="link_inertia" params="xyz rpy mass ixx ixy ixz iyy iyz izz">
         <inertial>
             <mass value="${mass}" />

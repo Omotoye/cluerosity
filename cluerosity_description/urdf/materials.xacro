@@ -25,10 +25,11 @@
     <material name="white">
         <color rgba="1.0 1.0 1.0 1.0" />
     </material>
-    
+    <material name="dark_gray">
+        <color rgba="0.35 0.38 0.4 1" />
+    </material>
     <material name="cyan">
         <color rgba="0 1.0 1.0 1.0" />
     </material>
-
 
 </robot>

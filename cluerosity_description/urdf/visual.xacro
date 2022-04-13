@@ -1,7 +1,7 @@
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-    
-    <xacro:include filename="$(find cluerosity_description)/urdf/materials.xacro" />
 
+    <!-- For Links with Meshes -->
     <xacro:macro name="mesh_link" params="xyz rpy mesh_name">
         <visual>
             <origin xyz="${xyz}" rpy="${rpy}" />
@@ -11,6 +11,7 @@
         </visual>
     </xacro:macro>
 
+    <!-- For Cylindrical Links  -->
     <xacro:macro name="cylinder_link" params="xyz rpy length radius material_name">
         <visual>
             <origin xyz="${xyz}" rpy="${rpy}" />
@@ -21,6 +22,7 @@
         </visual>
     </xacro:macro>
 
+    <!-- For box links -->
     <xacro:macro name="box_link" params="xyz rpy box_size material_name">
         <visual>
             <origin xyz="${xyz}" rpy="${rpy}" />
