@@ -1,0 +1,15 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:include filename="$(find cluerosity_description)/urdf/physics.xacro" />
+
+	<xacro:macro name="wheel_physics">
+		<xacro:cylinder_collision 
+			xyz="0 0 0" rpy="${3.142/2} 0 0"  
+            length="0.15" radius="0.165" />
+		<xacro:link_inertia 
+            xyz="0 0 0" rpy="${3.142/2} 0 0"  
+            mass="5.52250093" 
+            ixx="0.13326254" ixy="0" ixz="0"  
+            iyy="0.07660474" iyz="0"  izz="0.077"/>
+	</xacro:macro>
+
+</robot>

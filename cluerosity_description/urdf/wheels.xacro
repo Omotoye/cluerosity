@@ -2,6 +2,7 @@
 
     <!-- Includes -->
     <xacro:include filename="$(find cluerosity_description)/urdf/meshes.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/wheel_physics.xacro" />
 
     <xacro:macro name="cluerosity_wheel" params="name tyre_xyz tyre_rpy rim_xyz rim_rpy joint_xyz joint_rpy">
         <link name="${name}">
@@ -17,7 +18,10 @@
                     <mesh filename="${rim}" />
                 </geometry>
             </visual>
+            <xacro:wheel_physics />
+
         </link>
+
 
         <joint name="${name}_joint" type="continuous">
             <parent link="base_link" />
@@ -26,5 +30,5 @@
             <axis xyz="0 1 0" rpy="0 0 0" />
         </joint>
     </xacro:macro>
-    
+
 </robot>

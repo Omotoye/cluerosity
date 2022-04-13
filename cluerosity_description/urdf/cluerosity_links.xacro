@@ -1,6 +1,13 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:include filename="$(find cluerosity_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/physics.xacro" />
+
+    <!-- 
+        +===========================+
+        |      Fixed Link Macro     |
+        +==========================+ 
+    -->
 
     <xacro:macro name="fixed_link" params="name link_xyz link_rpy mesh_name joint_xyz joint_rpy parent">
 
@@ -11,6 +18,7 @@
                     <mesh filename="${mesh_name}" />
                 </geometry>
             </visual>
+
         </link>
 
         <joint name="${name}_joint" type="fixed">
@@ -19,6 +27,13 @@
             <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
         </joint>
     </xacro:macro>
+
+
+    <!-- 
+        +=============================+
+        |      Wheel Shaft Macro      |
+        +============================+ 
+    -->
 
     <xacro:macro name="cluerosity_shaft" params="name joint_xyz">
 
@@ -39,6 +54,13 @@
         </joint>
     </xacro:macro>
 
+
+    <!-- 
+        +==============================================+
+        |      Base Link and Base footprint Macro      |
+        +==============================================+ 
+    -->
+
     <xacro:macro name="base_link">
         <link name="base_link">
             <visual>
@@ -47,6 +69,20 @@
                     <mesh filename="${robot_base}" />
                 </geometry>
             </visual>
+            <xacro:box_collision 
+                xyz="0 0 0.075" rpy="0 0 0"  
+                box_size="0.8 0.4 0.15"/>
+            <xacro:box_collision 
+                xyz="-0.325 0.14 0.2" rpy="0 0 0"  
+                box_size="0.15 0.12 0.1"/>
+            <xacro:box_collision 
+                xyz="0.45 0.1 0.05" rpy="0 0 0"  
+                box_size="0.1 0.1 0.05"/>
+            <xacro:link_inertia 
+                xyz="0 0 0.075" rpy="0 0 0"  
+                mass="56.77662104" 
+                ixx="2.64" ixy="0.221" ixz="0.046"  
+                iyy="0.907" iyz="-0.237"  izz="3.303"/>
         </link>
 
         <!-- Base footprint is on the ground under the robot -->
