@@ -148,7 +148,7 @@
     </xacro:macro>
 
     <!-- Sensor Link -->
-    <xacro:macro name="sensor_link" params="name joint_xyz joint_rpy">
+    <xacro:macro name="sensor_link" params="name joint_xyz joint_rpy parent">
         <link name="${name}">
             <xacro:box_link 
                 xyz="0 0 0" rpy="0 0 0" 
@@ -165,7 +165,7 @@
         </link>
 
         <joint name="${name}_joint" type="fixed">
-            <parent link="sensor_housing" />
+            <parent link="${parent}" />
             <child link="${name}" />
             <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
         </joint>
