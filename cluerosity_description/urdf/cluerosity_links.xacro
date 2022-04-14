@@ -114,11 +114,11 @@
                 iyy="0.00204855" iyz="0"  izz="0.00078318"/>
         </link>
 
-        <joint name="gimbal_axle_joint" type="continuous">
+        <joint name="gimbal_axle_joint" type="fixed">  <!-- change back to "continuous" -->
             <parent link="gimbal_base" />
             <child link="gimbal_axle" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <axis xyz="0 0 1" rpy="0 0 0" />
+            <!-- <axis xyz="0 0 1" rpy="0 0 0" /> -->
         </joint>
     </xacro:macro>
 
@@ -138,12 +138,36 @@
                 iyy="0.00883757" iyz="-0.00005538"  izz="0.00675851"/>
         </link>
 
-        <joint name="sensor_housing_joint" type="revolute">
+        <joint name="sensor_housing_joint" type="fixed"> <!-- change back to "revolute" -->
             <parent link="stepper_motor" />
             <child link="sensor_housing" />
             <origin xyz="0.122 0 0" rpy="0 0 0" />
-            <axis xyz="1 0 0" rpy="0 0 0" />
-            <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" />
+            <!-- <axis xyz="1 0 0" rpy="0 0 0" />
+            <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" /> -->
+        </joint>
+    </xacro:macro>
+
+    <!-- Sensor Link -->
+    <xacro:macro name="sensor_link" params="name joint_xyz joint_rpy">
+        <link name="${name}">
+            <xacro:box_link 
+                xyz="0 0 0" rpy="0 0 0" 
+                box_size="0.01 0.01 0.01"
+                material_name="dark_gray"/>
+            <xacro:box_collision 
+                xyz="0 0 0" rpy="0 0 0" 
+                box_size="0.01 0.01 0.01"/>
+            <xacro:link_inertia 
+                xyz="0 0 0" rpy="0 0 0" 
+                mass="0.1" 
+                ixx="0.004" ixy="0" ixz="0"  
+                iyy="0.004" iyz="0"  izz="0.006"/>
+        </link>
+
+        <joint name="${name}_joint" type="fixed">
+            <parent link="sensor_housing" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
         </joint>
     </xacro:macro>
 
