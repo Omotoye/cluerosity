@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Choose simulation world-->
+    <arg name="sim_world" default="$(find cluerosity_gazebo)/worlds/world02.world" />
+
+    <include file="$(find cluerosity_description)/launch/display.launch">
+        <arg name="rviz_config" value="$(find cluerosity_slam)/config/octomap.rviz" />
+    </include>
+
+    <include file="$(find cluerosity_gazebo)/launch/gazebo.launch">
+        <arg name="sim_world" value="$(arg sim_world)" />
+        <arg name="x" value="1.5" />
+        <arg name="y" value="1.5" />
+        <arg name="z" value="0.115" />
+    </include>
+
+    <include file="$(find cluerosity_slam)/launch/octomap.launch"/>
+    
+</launch>

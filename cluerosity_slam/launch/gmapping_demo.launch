@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Choose simulation world-->
+    <arg name="sim_world" default="$(find cluerosity_gazebo)/worlds/clearpath_playpen.world" />
+
+    <include file="$(find cluerosity_description)/launch/display.launch">
+        <arg name="rviz_config" value="$(find cluerosity_slam)/config/gmapping.rviz" />
+    </include>
+
+    <include file="$(find cluerosity_gazebo)/launch/gazebo.launch">
+        <arg name="sim_world" value="$(arg sim_world)" />
+    </include>
+
+    <include file="$(find cluerosity_slam)/launch/gmapping.launch"/>
+    
+</launch>

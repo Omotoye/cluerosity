@@ -1,8 +1,16 @@
 <?xml version="1.0"?>
 <launch>
 
+    <!-- Spawn Coordinate-->
+    <arg name="x" default="0" />
+    <arg name="y" default="0" />
+    <arg name="z" default="0.115" />
+
+    <!-- Choose simulation world-->
+    <arg name="sim_world" default="$(find cluerosity_gazebo)/worlds/clearpath_playpen.world" />
+
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find cluerosity_gazebo)/worlds/clearpath_playpen.world" />
+        <arg name="world_name" value="$(arg sim_world)" />
         <arg name="paused" value="false" />
         <arg name="use_sim_time" value="true" />
         <arg name="gui" value="true" />
@@ -11,9 +19,9 @@
     </include>
 
     <include file="$(find cluerosity_gazebo)/launch/spawn.launch">
-        <arg name="x" value="0" />
-        <arg name="y" value="0" />
-        <arg name="z" value="0.115" />
+        <arg name="x" value="$(arg x)" />
+        <arg name="y" value="$(arg y)" />
+        <arg name="z" value="$(arg z)" />
     </include>
 
 

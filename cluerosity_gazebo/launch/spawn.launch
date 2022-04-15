@@ -8,7 +8,7 @@
     <arg name="model" default="$(find cluerosity_description)/urdf/cluerosity.xacro" />
 
     <!-- Load the URDF into the ROS Parameter Server -->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
 
     <node 
         name="urdf_spawner" 
