@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Some general parameters -->
+    <rosparam file="$(find cluerosity_slam)/param/ros.yaml" />
+
+    <!-- Start Mapper to genreate map from laser scans -->
+    <node name="Mapper" pkg="nav2d_karto" type="mapper" output="screen">
+        <rosparam file="$(find cluerosity_slam)/param/mapper.yaml" />
+    </node>
+
+</launch>
