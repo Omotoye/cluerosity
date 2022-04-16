@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <launch>
 
-    <include file="$(find cluerosity_slam)/launch/gmapping_demo.launch"/>
+    <include file="$(find cluerosity_slam)/launch/gmapping_demo.launch">
+        <arg name="rviz_config" value="$(find cluerosity_navigation)/config/move_base.rviz" />
+    </include>
     <include file="$(find cluerosity_navigation)/launch/move_base.launch"/>
 </launch>
