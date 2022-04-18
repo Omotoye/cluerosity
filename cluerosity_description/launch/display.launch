@@ -4,7 +4,16 @@
     <!-- Choose visualization -->
     <arg name="rviz_config" default="$(find cluerosity_description)/config/config.rviz" />
 
-    <param name="robot_description" command="$(find xacro)/xacro '$(find cluerosity_description)/urdf/cluerosity.xacro'" />
+    <!-- Choose robot type -->
+    <arg name="type" default="explorer" />
+
+    <group if="$(eval type == 'investigator')">
+        <param name="robot_description" command="$(find xacro)/xacro '$(find cluerosity_description)/urdf/cluerosity_manipulator.xacro'" />
+    </group>
+    
+    <group if="$(eval type == 'explorer')">
+        <param name="robot_description" command="$(find xacro)/xacro '$(find cluerosity_description)/urdf/cluerosity.xacro'" />
+    </group>
 
     <!-- Show in Rviz  -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />

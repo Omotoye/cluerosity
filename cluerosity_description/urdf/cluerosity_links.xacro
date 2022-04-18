@@ -31,6 +31,66 @@
 
 
     <!-- 
+        +===========================+
+        |   Continuous Link Macro    |
+        +==========================+ 
+    -->
+
+    <xacro:macro name="continuous_link" params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent axis_xyz axis_rpy">
+        <link name="${name}">
+            <xacro:mesh_link 
+                xyz="${link_xyz}" rpy="${link_rpy}" 
+                mesh_name="${mesh_name}"/>
+            <xacro:box_collision 
+                xyz="${collision_xyz}" rpy="${collision_rpy}"  
+                box_size="${collision_size}"/>
+            <xacro:link_inertia 
+                xyz="${collision_xyz}" rpy="${collision_rpy}"  
+                mass="${mass}" 
+                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"  
+                iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+        </link>
+
+        <joint name="${name}_joint" type="continuous">
+            <parent link="${parent}" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+            <axis xyz="${axis_xyz}" rpy="${axis_rpy}" />
+        </joint>
+    </xacro:macro>
+
+    <!-- 
+        +===========================+
+        |  Revolute Link Macro    |
+        +==========================+ 
+    -->
+
+    <xacro:macro name="revolute_link" params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent axis_xyz axis_rpy lower upper">
+        <link name="${name}">
+            <xacro:mesh_link 
+                xyz="${link_xyz}" rpy="${link_rpy}" 
+                mesh_name="${mesh_name}"/>
+            <xacro:box_collision 
+                xyz="${collision_xyz}" rpy="${collision_rpy}"  
+                box_size="${collision_size}"/>
+            <xacro:link_inertia 
+                xyz="${collision_xyz}" rpy="${collision_rpy}"  
+                mass="${mass}" 
+                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"  
+                iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+        </link>
+
+        <joint name="${name}_joint" type="revolute">
+            <parent link="${parent}" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+            <axis xyz="${axis_xyz}" rpy="${axis_rpy}" />
+            <limit effort="1000.0" lower="${lower}" upper="${upper}" velocity="0.5" /> -->
+        </joint>
+    </xacro:macro>
+
+    
+    <!-- 
         +==============================================+
         |      Base Link and Base footprint Macro      |
         +==============================================+ 

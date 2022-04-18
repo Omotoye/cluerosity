@@ -2,9 +2,19 @@
 
 <launch>
 
+    <!-- Choose robot type -->
+    <arg name="type" default="explorer" />
+
     <arg name="robot_namespace" default="/" />
 
-    <param name="robot_description" command="$(find xacro)/xacro '$(find cluerosity_description)/urdf/cluerosity.xacro'
-    robot_namespace:=$(arg robot_namespace)" />
 
+    <group if="$(eval type == 'investigator')">
+        <param name="robot_description" command="$(find xacro)/xacro '$(find cluerosity_description)/urdf/cluerosity_manipulator.xacro'
+        robot_namespace:=$(arg robot_namespace)" />
+    </group>
+
+    <group if="$(eval type == 'explorer')">
+        <param name="robot_description" command="$(find xacro)/xacro '$(find cluerosity_description)/urdf/cluerosity.xacro'
+        robot_namespace:=$(arg robot_namespace)" />
+    </group>
 </launch>

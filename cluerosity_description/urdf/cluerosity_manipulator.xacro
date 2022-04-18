@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<robot name="cluerosity_manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Includes -->
+    <xacro:include filename="$(find cluerosity_description)/urdf/cluerosity.xacro" />
+    <!-- 
+        +=======================+
+        |       Manipulator      |
+        +=======================+ 
+    -->  
+
+    <xacro:revolute_link 
+    name="motor_01" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${motor}" 
+    joint_xyz="0.498 0.15 0.09" joint_rpy="${PI} 0 0" 
+    parent="base_link" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"
+    axis_xyz="0 0 1" axis_rpy="0 0 0"
+    lower="-0.35" upper="1.20"/>
+
+    <xacro:fixed_link 
+    name="motor_connector_01" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${motor_connector_01}" 
+    joint_xyz="0.046 0 0.0395" joint_rpy="${PI/2} ${PI/2} 0" 
+    parent="motor_01" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"/>
+
+    <xacro:revolute_link 
+    name="motor_02" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${motor}" 
+    joint_xyz="0 0.036 -0.0395" joint_rpy="0 0 0" 
+    parent="motor_connector_01" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"
+    axis_xyz="0 0 1" axis_rpy="0 0 0"
+    lower="${-PI/2}" upper="0"/>
+
+    <xacro:fixed_link 
+    name="link_01" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${link_01}" 
+    joint_xyz="0 0 0" joint_rpy="0 0 ${PI}" 
+    parent="motor_02" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"/>
+
+    <xacro:revolute_link 
+    name="motor_03" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${motor}" 
+    joint_xyz="0 -0.35 0" joint_rpy="0 0 0" 
+    parent="link_01" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"
+    axis_xyz="0 0 1" axis_rpy="0 0 0"
+    lower="0" upper="${PI/2}"/>
+
+    <xacro:fixed_link 
+    name="link_02" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${link_02}" 
+    joint_xyz="0 0 0.0395" joint_rpy="0 0 ${PI}" 
+    parent="motor_03" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"/>
+
+    <xacro:revolute_link 
+    name="motor_04" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${motor}" 
+    joint_xyz="0.370 0 -0.0395" joint_rpy="0 0 0" 
+    parent="link_02" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"
+    axis_xyz="0 0 1" axis_rpy="0 0 0"
+    lower="${-PI/2}" upper="${PI/2}"/>
+
+    <xacro:fixed_link 
+    name="motor_connector_02" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${motor_connector_02}" 
+    joint_xyz="0 0 0" joint_rpy="0 0 0" 
+    parent="motor_04" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"/>
+
+    <xacro:continuous_link 
+    name="motor_05" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${motor}" 
+    joint_xyz="0.1395 0 0.1" joint_rpy="0 ${-PI/2} 0" 
+    parent="motor_connector_02" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"
+    axis_xyz="0 0 1" axis_rpy="0 0 0"/>
+
+    <xacro:fixed_link 
+    name="end_effector_connector" 
+    link_xyz="0 0 0" link_rpy="0 0 0" 
+    mesh_name="${end_effector_connector}" 
+    joint_xyz="0 0 0" joint_rpy="0 0 ${-PI/2}" 
+    parent="motor_05" 
+    collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+    mass="0.61826506" 
+    ixx="0.00067265" ixy="0" ixz="0" 
+    iyy="0.0006728" iyz="0" izz="0.00080351"/>
+
+</robot>

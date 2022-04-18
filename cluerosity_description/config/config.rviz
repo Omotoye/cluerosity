@@ -78,8 +78,11 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        end_effector_connector:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -103,7 +106,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         left_front_wheel:
           Alpha: 1
           Show Axes: false
@@ -120,6 +122,51 @@ Visualization Manager:
           Show Trail: false
           Value: true
         lidar_sensor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_01:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        link_02:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_01:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_02:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_03:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_04:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_05:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_connector_01:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        motor_connector_02:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -168,6 +215,8 @@ Visualization Manager:
           Value: false
         camera_link:
           Value: false
+        end_effector_connector:
+          Value: false
         front_shaft:
           Value: false
         gimbal_axle:
@@ -183,6 +232,24 @@ Visualization Manager:
         lidar_base:
           Value: false
         lidar_sensor:
+          Value: false
+        link_01:
+          Value: false
+        link_02:
+          Value: false
+        motor_01:
+          Value: false
+        motor_02:
+          Value: false
+        motor_03:
+          Value: false
+        motor_04:
+          Value: false
+        motor_05:
+          Value: false
+        motor_connector_01:
+          Value: false
+        motor_connector_02:
           Value: false
         rear_shaft:
           Value: false
@@ -221,6 +288,17 @@ Visualization Manager:
             lidar_base:
               lidar_sensor:
                 {}
+            motor_01:
+              motor_connector_01:
+                motor_02:
+                  link_01:
+                    motor_03:
+                      link_02:
+                        motor_04:
+                          motor_connector_02:
+                            motor_05:
+                              end_effector_connector:
+                                {}
             rear_shaft:
               {}
             right_front_wheel:
@@ -302,5 +380,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1816
-  X: 8
-  Y: -2
+  X: 38
+  Y: 138
