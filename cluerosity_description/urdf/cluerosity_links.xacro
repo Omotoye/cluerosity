@@ -150,7 +150,7 @@
     <!-- Sensor Link -->
     <xacro:macro name="sensor_link" params="name joint_xyz joint_rpy parent">
         <link name="${name}">
-            <xacro:box_link 
+            <!-- <xacro:box_link 
                 xyz="0 0 0" rpy="0 0 0" 
                 box_size="0.01 0.01 0.01"
                 material_name="dark_gray"/>
@@ -161,7 +161,7 @@
                 xyz="0 0 0" rpy="0 0 0" 
                 mass="0.1" 
                 ixx="0.004" ixy="0" ixz="0"  
-                iyy="0.004" iyz="0"  izz="0.006"/>
+                iyy="0.004" iyz="0"  izz="0.006"/> -->
         </link>
 
         <joint name="${name}_joint" type="fixed">

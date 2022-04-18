@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <launch>
     <!-- Choose simulation world-->
-    <arg name="sim_world" default="$(find cluerosity_gazebo)/worlds/clearpath_playpen.world" />
+    <!-- <arg name="sim_world" default="$(find cluerosity_gazebo)/worlds/clearpath_playpen.world" /> -->
+    <arg name="sim_world" default="$(find cluerosity_gazebo)/worlds/world02.world" />
 
     <arg name="rviz_config" default="$(find cluerosity_slam)/config/gmapping.rviz" />
 

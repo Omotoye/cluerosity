@@ -9,4 +9,11 @@
     <xacro:property name="sensor_housing" value="package://cluerosity_description/meshes/sensor_housing.dae" />
     <xacro:property name="lidar_base" value="package://cluerosity_description/meshes/lidar_base.dae" />
     <xacro:property name="lidar_sensor" value="package://cluerosity_description/meshes/velodyne_lidar.dae" />
+    <xacro:property name="motor" value="package://cluerosity_description/meshes/motor.dae" />
+    <xacro:property name="motor_connector_01" value="package://cluerosity_description/meshes/motor_connector_01.dae" />
+    <xacro:property name="motor_connector_02" value="package://cluerosity_description/meshes/motor_connector_02.dae" />
+    <xacro:property name="link_01" value="package://cluerosity_description/meshes/link_01.dae" />
+    <xacro:property name="link_02" value="package://cluerosity_description/meshes/link_02.dae" />
+    <xacro:property name="end_effector_connector" value="package://cluerosity_description/meshes/end_effector_connector.dae" />
+
 </robot>

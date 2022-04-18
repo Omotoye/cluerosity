@@ -2,8 +2,8 @@
 <COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
 
   <asset>
-    <created>2022-04-11T10:42:03</created>
-    <modified>2022-04-11T10:42:03</modified>
+    <created>2022-04-18T11:10:22</created>
+    <modified>2022-04-18T11:10:22</modified>
     <unit meter="1" name="Meters"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -51,7 +51,7 @@
         <technique sid="COMMON">
           <lambert>
             <diffuse>
-              <color sid="diffuse">0.258824 0.278431 0.301961 1</color>
+              <color sid="diffuse">0.4 0.384314 0.34902 1</color>
             </diffuse>
             <transparent opaque="A_ONE">
               <color sid="transparent">1 1 1 1</color>
