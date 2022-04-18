@@ -8,6 +8,6 @@
 
 <div align="center">
 <h1>  Cluerosity </h1><br>
-<img src="images/cluerosity.png" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
+<img src="images/cluerosity_v2.png" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
 
 </div>
