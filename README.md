@@ -9,8 +9,15 @@
 # Outline
 
 - Introduction
+    - Robot Design Timeline 
 - Tech Specs
 - ROS Packages
+    - cluerosity_description
+    - cluerosity_gazebo
+    - cluerosity_slam 
+    - cluerosity_navigation
+    - cluerosity_moveit
+    - cluerosity_unity
 - System Limitations and Possible Improvements
 - Installation and running procedure
 
@@ -23,3 +30,16 @@
 
 **Cluerosity** robot is a robot designed for the purpose of ***and not limited to*** the [Experimental Robotics Lab Projects](https://github.com/Omotoye/Experimental-Robotics-Project). The Experimental Robotics Lab Projects are centered around a murder mystery board game called [Cluedo](https://en.wikipedia.org/wiki/Cluedo). The objective of the cluedo game is to *determine __who__ murdered the game's victim, __where__ the crime took place, and __what__ weapon was used*. Each player assumes the role of one of the six suspects and attempts to deduce the correct answer by strategically moving around a game board representing the rooms of a mansion and collecting clues about the circumstances of the murder from the other players. A robotics senario was created for this board game, where a robot is supposed to move into different rooms randomly or strategically acquire hints about the possible who, where and what of the murder and then generate a hypothesis that would be taken to an oracle in a set location in the mansion to confirm if the hypothesis is correct. To acquire the said hints the robot has to be fitted with sensors like cameras for perceiving the environment a manipulator to pick out hints that are above ground level and also sensors that would help with navigation. 
 >The name of the game being portrayed; *Cluedo* and an inspiration from the *Curosity Rover* sent to Mars to gather clues about the existence of life, birth the name *Cluerosity :slightly_smiling_face:*
+
+## Robot Design Timeline 
+
+Attached below are fun _.gifs_ files that shows the timeline of the design of the robot; from the use of primitive shapes to meshes.
+
+<br/>
+
+<div align="center">
+<img src="images/version-1.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" ><img src="images/version-2.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
+<img src="images/version-3.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" ><img src="images/version-4.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
+</div>
+
+
