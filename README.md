@@ -225,6 +225,12 @@ roslaunch cluerosity_navigation move_base_demo.launch
 ``` 
 
 After launching the package, see video below to see how to send a goal coordinate from `rviz`
+    
+    
+
+https://user-images.githubusercontent.com/67521465/164321309-a2d68918-f659-4838-9594-b7355223ad9f.mp4
+
+
 
 Enter the command below to see the demo for launching the `explore-lite` package to map an environment. 
 
