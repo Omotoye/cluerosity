@@ -134,6 +134,12 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
 if everything was done properly, it should look something like what is in the video below. 
+    
+    
+
+https://user-images.githubusercontent.com/67521465/164304709-c04feca5-eab7-4b3e-a480-8ea28310ee96.mp4
+
+
 
 - [octomap](http://wiki.ros.org/octomap); The Octomap library implements a 3D occupancy grid mapping approach, based on an octree, with the following 
 feature:
