@@ -61,7 +61,32 @@ This manipulator carries a camera for hint perception and a shelock link pointer
 The Velodyne LiDAR is not actually used for any part of the project, so for now, it's just there as a prop and serve no actual use. Of course if the project is to be adapted for a different project that might require such sensor, a simple edit of the robot description would do the trick. 
 
 <br><br>
+
 # ROS Packages
+Several packages were implemented for different functionalities required by the robot. Below is a general overview of each of the packages. 
 
+## cluerosity_description
 
+This is the package that contains the **urdf** of the package and all the files required for the urdf description of the robot. _Xacro_ files were implemented to modularize the urdf of this robot and then the urdf was generated from the xacro files. This package feature two launch files `display.launch` and `description.launch`. **_After following the installation procedure_** of this package run the launch file below to view the robot. 
 
+```bash
+roslaunch cluerosity_description display.launch # the default robot that would be launched is the explorer robot
+```
+
+_to launch the robot with the manipulator; **investigator**, use the launch file below_
+
+```bash
+roslaunch cluerosity_description display.launch type:=investigator 
+```
+
+The launch files above would load the robot description into the parameter server and the launch **rviz** with a customized configuration showing the robot in it; if you just want to load the robot description into the parameter server, use the launch file below. 
+
+```bash
+roslaunch cluerosity_description description.launch
+```
+
+same goes here for the type of robot, if you require the robot with the manipulator, use the launch file below. 
+
+```bash
+roslaunch cluerosity_description description.launch type:=investigator
+```
