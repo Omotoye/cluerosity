@@ -205,6 +205,12 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
 if everything was done properly, it should look something like what is in the video below. 
+    
+    
+
+https://user-images.githubusercontent.com/67521465/164309605-f8d5bda9-1361-4187-8908-ac03a784183e.mp4
+
+
 
 ## cluerosity_navigation 
 This package was created to enable the robot to navigate autonomously in an unknown environment. It uses [move_base](http://wiki.ros.org/move_base) package from [ROS Navigation Stack](http://wiki.ros.org/navigation?distro=noetic) to autonomously navigate the cluerosity robot from one point to some goal point. A demo has been prepared in the cluerosity_navigation package that uses the map generated from the gmapping slam (any of the slam package implemented can be used) to help move_base navigate the robot in an environment. 
