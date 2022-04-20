@@ -114,7 +114,10 @@ run the command below to move the robot around the environment in order to map t
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
-if everything was done properly, it should look something like what is in the video below. 
+if everything was done properly, it should look something like what is in the video below.
+    
+https://user-images.githubusercontent.com/67521465/164301875-b0b6d5cc-7908-4606-bf33-3176e75f107a.mp4
+
 
 - [karto-slam](http://wiki.ros.org/slam_karto); KartoSLAM is a graph-based SLAM approach developed by SRI International’s Karto Robotics, which has been extended for ROS by using a highly-optimized and
 noniterative Cholesky matrix decomposition for sparse linear systems as its solver 
