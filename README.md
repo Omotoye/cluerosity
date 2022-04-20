@@ -90,3 +90,125 @@ same goes here for the type of robot, if you require the robot with the manipula
 ```bash
 roslaunch cluerosity_description description.launch type:=investigator
 ```
+
+## cluerosity_gazebo 
+This package contains launch files to spawn the robot into gazebo simulation and features several **[worlds](http://gazebosim.org/tutorials?tut=build_world)**, where the robot simulation can take place.  To spawn the robot into gazebo use the launch file below 
+
+```bash
+roslaunch cluerosity_gazebo gazebo.launch
+```
+_for now, by default, it'll spawn the **explorer** robot into gazebo, still working on the spawning of the robot with manipulator into gazebo_
+
+## cluerosity_slam 
+This package contains the implementation of various slam algorithms for use on this cluerosity robot. The slam algorithms implemented are highlighted below. 
+
+- [gmapping](http://wiki.ros.org/gmapping); The gmapping package provides laser-based SLAM (Simultaneous Localization and Mapping), as a ROS node called slam_gmapping. Using slam_gmapping, you can create a 2-D occupancy grid map (like a building floorplan) from laser and pose data collected by a mobile robot. __*After following the installation procedure*__ of the cluerosity project run the commands below to test the gmapping demo in the package. 
+
+```bash
+roslaunch cluerosity_slam gmapping_demo.launch
+``` 
+
+run the command below to move the robot around the environment in order to map the environment. 
+
+```bash
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+if everything was done properly, it should look something like what is in the video below. 
+
+- [karto-slam](http://wiki.ros.org/slam_karto); KartoSLAM is a graph-based SLAM approach developed by SRI International’s Karto Robotics, which has been extended for ROS by using a highly-optimized and
+noniterative Cholesky matrix decomposition for sparse linear systems as its solver 
+In the KartoSLAM version available for ROS, the Sparse Pose Adjustment (SPA) is responsible for both scan matching and loop-closure procedures. The higher the number of landmarks, the more amount of memory is required. _*After following the installation procedure*__ of the cluerosity project run the commands below to test the karto-slam demo in the package. 
+
+```bash
+roslaunch cluerosity_slam karto_slam_demo.launch
+``` 
+
+run the command below to move the robot around the environment in order to map the environment. 
+
+```bash
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+if everything was done properly, it should look something like what is in the video below. 
+
+- [octomap](http://wiki.ros.org/octomap); The Octomap library implements a 3D occupancy grid mapping approach, based on an octree, with the following 
+feature:
+    - **Full 3D model**. The map is able to model arbitrary environments without prior assumptions about it. The 
+representation models occupied areas as well as free space. Unknown areas of the environment are implicitly 
+encoded in the map. While the distinction between free and occupied space is essential for safe robot navigation, 
+information about unknown areas is important, e.g., for autonomous exploration of an environment.
+    - **Updatable**. It is possible to add new information or sensor readings at any time. Modeling and updating is done in 
+a probabilistic fashion. This accounts for sensor noise or measurements which result from dynamic changes in the 
+environment, e.g., because of dynamic objects. Furthermore, multiple robots are able to contribute to the same 
+map and a previously recorded map is extendable when new areas are explored.
+    - **Flexible**. The extent of the map does not have to be known in advance. Instead, the map is dynamically expanded 
+as needed. The map is multi-resolution so that, for instance, a high-level planner is able to use a coarse map, while 
+a local planner may operate using a fine resolution. This also allows for efficient visualizations which scale from 
+coarse overviews to detailed close-up views.
+    - **Compact**. The map is stored efficiently, both in memory and on disk. It is possible to generate compressed files for 
+later usage or convenient exchange between robots even under bandwidth constraints. 
+
+Please notice that Octomap is not really a SLAM algorithm, since it does not implement any attempts of improving the 
+robot localization or the knowledge of the surrounding environment
+
+*Taken from [Prof Carmine Recchiutto's](https://github.com/carmined8) note*
+
+_*After following the installation procedure*__ of the cluerosity project run the commands below to test the octomap demo in the package. 
+
+```bash
+roslaunch cluerosity_slam octomap_demo.launch
+``` 
+
+run the command below to move the robot around the environment in order to map the environment. 
+
+```bash
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+if everything was done properly, it should look something like what is in the video below. 
+
+
+- [slam-toolbox](https://github.com/SteveMacenski/slam_toolbox); This package, slam_toolbox is open-source under an LGPLv2.1 at [SteveMacenski](https://github.com/SteveMacenski/slam_toolbox.git) and is available in every current ROS distribution. It was
+also selected as the new default SLAM vendor in ROS 2, the second generation of robot
+operating systems, replacing GMapping. SLAM Toolbox was integrated into the new ROS 2
+Navigation2 project, providing real-time positioning in dynamic environments for autonomous
+navigation (Macenski, Martín, et al., 2020). It has been shown to map spaces as large as
+24,000 m2 [The Journal of Open Source Software](https://joss.theoj.org/papers/10.21105/joss.02783)
+This package subscribes to `sensor_msgs/LaserScan` in the `/laser_scan` topic and tf message in the`/tf` and uses the message to generate a `nav_msgs/OccupancyGrid` and publishes it to the `/map` topic message. It also helps the robot Localize itself to the environment.
+
+_*After following the installation procedure*__ of the cluerosity project run the commands below to test the slam-toolbox demo in the package. 
+
+```bash
+roslaunch cluerosity_slam slam_toolbox_demo.launch
+``` 
+
+run the command below to move the robot around the environment in order to map the environment. 
+
+```bash
+rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+```
+
+if everything was done properly, it should look something like what is in the video below. 
+
+## cluerosity_navigation 
+This package was created to enable the robot to navigate autonomously in an unknown environment. It uses [move_base](http://wiki.ros.org/move_base) package from [ROS Navigation Stack](http://wiki.ros.org/navigation?distro=noetic) to autonomously navigate the cluerosity robot from one point to some goal point. A demo has been prepared in the cluerosity_navigation package that uses the map generated from the gmapping slam (any of the slam package implemented can be used) to help move_base navigate the robot in an environment. 
+
+This package also implements the package [explore-lite](http://wiki.ros.org/explore_lite) to map an unknown environment, this package provides greedy frontier-based exploration. When node is running, robot will greedily explore its environment until no frontiers could be found. Movement commands will be send to move_base. A demo launch file was also implemented to showcase this ability. 
+
+
+_*After following the installation procedure*__ of the cluerosity project run the commands below to test the navigation demo in the package. 
+
+```bash
+roslaunch cluerosity_navigation move_base_demo.launch
+``` 
+
+After launching the package, see video below to see how to send a goal coordinate from `rviz`
+
+Enter the command below to see the demo for launching the `explore-lite` package to map an environment. 
+
+```bash
+roslaunch cluerosity_navigation explorer_demo.launch    
+```
+
+see video of demo below. 
