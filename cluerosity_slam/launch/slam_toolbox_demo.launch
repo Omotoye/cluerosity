@@ -9,8 +9,12 @@
 
     <include file="$(find cluerosity_gazebo)/launch/gazebo.launch">
         <arg name="sim_world" value="$(arg sim_world)" />
+        <!-- Spawn Coordinate-->
+        <arg name="x" value="0" />
+        <arg name="y" value="0" />
+        <arg name="z" value="0.115" />
     </include>
 
-    <include file="$(find cluerosity_slam)/launch/slam_toolbox.launch"/>
-    
+    <include file="$(find cluerosity_slam)/launch/slam_toolbox.launch" />
+
 </launch>
