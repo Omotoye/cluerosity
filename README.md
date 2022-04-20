@@ -176,6 +176,12 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
 if everything was done properly, it should look something like what is in the video below. 
+    
+    
+
+https://user-images.githubusercontent.com/67521465/164307763-33b2944a-092f-40ac-9fce-feb2058f2ed0.mp4
+
+
 
 
 - [slam-toolbox](https://github.com/SteveMacenski/slam_toolbox); This package, slam_toolbox is open-source under an LGPLv2.1 at [SteveMacenski](https://github.com/SteveMacenski/slam_toolbox.git) and is available in every current ROS distribution. It was
