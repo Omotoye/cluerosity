@@ -231,7 +231,10 @@ Enter the command below to see the demo for launching the `explore-lite` package
 ```bash
 roslaunch cluerosity_navigation explorer_demo.launch    
 ```
-
 see video of demo below. 
+
+https://user-images.githubusercontent.com/67521465/164319491-154e5427-87f0-4bed-bf90-aa110ec8ef3e.mp4
+
+       
 
 test. 
