@@ -241,6 +241,6 @@ see video of demo below.
 
 https://user-images.githubusercontent.com/67521465/164319491-154e5427-87f0-4bed-bf90-aa110ec8ef3e.mp4
 
-## cluerosity_moveit  <img src="https://user-images.githubusercontent.com/67521465/164322376-39558919-6e57-449c-bbcb-1a5f7d33ebba.gif" width="40"></h2>
+## cluerosity_moveit  <img src="https://user-images.githubusercontent.com/67521465/164322376-39558919-6e57-449c-bbcb-1a5f7d33ebba.gif" width="50"></h2>
 
 🚧 working on it...
