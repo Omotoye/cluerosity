@@ -42,22 +42,25 @@ Attached below are fun _.gifs_ files that shows the timeline of the design of th
 </div>
 
 ### Sensor Housing
-<img align="right"  src="images/sensor_housing.png" width="30%" height="30%" >
+
+<img align="right"  src="images/sensor_housing.png" width="15%">
 
 The is a box standing on a gimbal, it houses a RGB, RGB-D camera and a laser sensor. The sensor housing gimbal can *pan 360 degrees* and *tilt 20 degree* up/down. The laser sensor is used by the slam packages to map the environment; which is then used by the navigation package to navigate to a goal point. The depth camera can be used for getting point cloud data of the environment to generate 3D map of the environment. The rgb camera is used for getting image data which would be used to percieve hint data in the robotics cluedo senario. 
 
 ### Robot Manipulator 
 
-<img align="right"  src="images/mani_camera.png" width="30%" height="30%" >
+<img align="right"  src="images/mani_camera.png" width="15%">
 
 This manipulator carries a camera for hint perception and a shelock link pointer to also acquire hint in the second version of the experimental robotics project. The end effector carrying the camera and sherlock link has a continuous joint that allows it turn 360 degrees. The manipulator link tree has 4 revolute joints leading to the end effect, so this helps with redundancy and allows the sherlock link reach more point in the space in front of the robot. 
 
+<br><br>
 ### Velodyne LiDAR
-<img align="right"  src="images/velodyne.png" width="30%" height="30%" >
+
+<img align="right"  src="images/velodyne.png" width="15%" >
 
 The Velodyne LiDAR is not actually used for any part of the project, so for now, it's just there as a prop and serve no actual use. Of course if the project is to be adapted for a different project that might require such sensor, a simple edit of the robot description would do the trick. 
 
-
+<br><br>
 # ROS Packages
 
 
