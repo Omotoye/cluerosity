@@ -253,3 +253,89 @@ https://user-images.githubusercontent.com/67521465/164319491-154e5427-87f0-4bed-
     
 # Installation Procedure
 
+The ros packages in this project has several dependencies, enter the commands below to intall the package and it's requried packages. 
+
+>**NB**: The instructions below are meant for packages that are written for _**ROS Noetic Ninjemys**_.
+
+
+First, you create a folder for your catkin workspace
+
+```bash
+mkdir -p ~/catkin_ws/src
+```
+
+Clone the package repository
+
+```bash
+cd ~/catkin_ws/src
+git clone https://github.com/Omotoye/cluerosity.git
+```
+
+Once the package has been successfully cloned, you need to get all the dependencies below before building the workspace. 
+
+### Dependencies
+
+SLAM_packages _(from Prof Carmine's github)_, it contains almost all the dependencies for the `cluerosity_slam` package
+
+```bash
+cd ~/catkin_ws/src
+cd ~/catkin_ws/src/SLAM_packages
+git checkout noetic 
+git clone https://github.com/CarmineD8/SLAM_packages
+```
+```bash
+sudo apt-get install libsuitesparse-dev 
+sudo apt-get install ros-noetic-openslam-gmapping
+```
+
+for the slam-toolbox, run the commands below 
+```bash
+cd ~/catkin_ws/src
+git clone https://github.com/SteveMacenski/slam_toolbox
+
+cd ~/catkin_ws/src/slam_toolbox
+git checkout noetic-devel
+```
+
+for the control of the manipulator links 
+```bash
+sudo apt-get install ros-noetic-ros-control ros-noetic-ros-controllers
+sudo apt-get install ros-noetic-gazebo-ros-pkgs ros-noetic-gazebo-ros-control
+```
+
+for moveit
+```bash
+sudo apt-get install ros-noetic-moveit 
+sudo apt-get install ros-noetic-moveit-resources-prbt-moveit-config
+```
+
+for navigation package
+```bash
+sudo apt-get install ros-noetic-navigation
+cd ~/catkin_ws/src
+git clone https://github.com/CarmineD8/m-explore
+git clone https://github.com/CarmineD8/planning
+```
+
+to get all the remaining dependencies
+```bash
+# run this command in the catkin_ws folder
+cd ~/catkin_ws
+rosdep install -q -y -r --from-paths src --ignore-src 
+```
+
+**Now you can build the package**, run the command below to build the package. 
+> You can use `catkin_make` or `catkin build`, but anyone you use, you have to stick with it. 
+
+```bash
+cd ~/catkin_ws
+catkin_make 
+```
+OR 
+```bash
+cd ~/catkin_ws
+catkin build 
+```
+**_You can now run all the demos shown in the ROS Pacakges section_** 
+
+_Enjoy!!!_
