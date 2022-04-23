@@ -3,6 +3,7 @@
 
     <!-- Includes -->
     <xacro:include filename="$(find cluerosity_description)/urdf/cluerosity.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/transmission.xacro" />
     <!-- 
         +=======================+
         |       Manipulator      |

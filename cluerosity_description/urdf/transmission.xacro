@@ -1,0 +1,52 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <transmission name="motor_01_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="motor_01_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission>
+    <transmission name="motor_02_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="motor_02_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission>
+    <transmission name="motor_03_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="motor_03_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission>
+    <transmission name="motor_04_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="motor_04_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission>
+    <transmission name="motor_05_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="motor_05_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission>
+</robot>
