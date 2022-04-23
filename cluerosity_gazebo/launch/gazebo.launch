@@ -53,7 +53,18 @@
         joint2_position_controller
         joint3_position_controller
         joint4_position_controller
-        joint5_position_controller"></node>
+        joint5_position_controller
+        joint6_position_controller
+        joint7_position_controller"></node>
+    </group>
+
+    <group if="$(eval type == 'explorer')">
+        <rosparam file="$(find cluerosity_description)/config/motors_config.yaml" command="load" ns="/cluerosity" />
+
+        <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="--namespace=/cluerosity
+        joint_state_controller
+        joint6_position_controller
+        joint7_position_controller"></node>
     </group>
 
 
