@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<robot name="manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!-- Includes -->
+    <xacro:include filename="$(find cluerosity_description)/urdf/meshes.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/visual.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/physics.xacro" />  
+    <xacro:include filename="$(find test_package)/urdf/manipulator_links.xacro" />
+    <xacro:include filename="$(find test_package)/urdf/manipulator.gazebo" />
+
+    <!-- Properties -->
+    <xacro:property name="PI" value="3.14159265359" />
+
+    <!-- 
+        +=====================+
+        |      Base Link      |
+        +=====================+ 
+    -->
+    
+        <link name="base_link">
+            <xacro:box_link 
+                xyz="0 0 0" rpy="0 0 0"
+                box_size="0.1 0.1 0.01"
+                material_name="black"
+                />
+            <xacro:box_collision 
+                xyz="0 0 0" rpy="0 0 0"  
+                box_size="0.1 0.1 0.01"/>
+            <xacro:link_inertia 
+                xyz="0 0 0.075" rpy="0 0 0"  
+                mass="100.77662104" 
+                ixx="2.64" ixy="0.221" ixz="0.046"  
+                iyy="0.907" iyz="-0.237"  izz="3.303"/>
+        </link>
+
+        <!-- 
+            +=======================+
+            |       Manipulator      |
+            +=======================+ 
+        -->  
+    
+        <xacro:motor_link 
+        name="motor_01"  
+        joint_xyz="0 0 0.1" joint_rpy="${PI} 0 0" 
+        parent="base_link" 
+        axis_xyz="0 0 1" axis_rpy="0 0 0"
+        lower="-0.3" upper="1.20"/>
+    
+        <xacro:fixed_link 
+        name="motor_connector_01" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${motor_connector_01}" 
+        joint_xyz="0.046 0 0.0395" joint_rpy="${PI/2} ${PI/2} 0" 
+        parent="motor_01" 
+        collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.05 0.05 0.05"  
+        mass="0.1226583" 
+        ixx="0.00006619" ixy="0" ixz="0" 
+        iyy="0.00007979" iyz="0" izz="0.00006619"/>
+    
+        <xacro:motor_link 
+        name="motor_02" 
+        joint_xyz="0 0.036 -0.0395" joint_rpy="0 0 0" 
+        parent="motor_connector_01" 
+        axis_xyz="0 0 1" axis_rpy="0 0 0"
+        lower="${-PI/2}" upper="0"/>
+    
+        <xacro:fixed_link 
+        name="link_01" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${link_01}" 
+        joint_xyz="0 0 0" joint_rpy="0 0 ${PI}" 
+        parent="motor_02" 
+        collision_xyz="0 -0.180 0" collision_rpy="0 0 0" collision_size="0.06 0.36 0.06"  
+        mass="1.28482853" 
+        ixx="0.01710143" ixy="0" ixz="0" 
+        iyy="0.00045593" iyz="0" izz="0.01705674"/>
+    
+        <xacro:motor_link 
+        name="motor_03" 
+        joint_xyz="0 -0.35 0" joint_rpy="0 0 0" 
+        parent="link_01" 
+        axis_xyz="0 0 1" axis_rpy="0 0 0"
+        lower="0" upper="${PI/2}"/>
+    
+        <xacro:fixed_link 
+        name="link_02" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${link_02}" 
+        joint_xyz="0 0 0.0395" joint_rpy="0 0 ${PI}" 
+        parent="motor_03" 
+        collision_xyz="0.180 0 0" collision_rpy="0 0 0" collision_size="0.36 0.06 0.06"  
+        mass="1.19702377" 
+        ixx="0.00043777" ixy="0.00000865" ixz="0" 
+        iyy="0.01364495" iyz="0" izz="0.01375154"/>
+    
+        <xacro:motor_link 
+        name="motor_04" 
+        joint_xyz="0.370 0 -0.0395" joint_rpy="0 0 0" 
+        parent="link_02" 
+        axis_xyz="0 0 1" axis_rpy="0 0 0"
+        lower="${-PI/2}" upper="${PI/2}"/>
+    
+        <xacro:fixed_link 
+        name="motor_connector_02" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${motor_connector_02}" 
+        joint_xyz="0 0 0" joint_rpy="0 0 0" 
+        parent="motor_04" 
+        collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.05 0.05 0.05"  
+        mass="0.32771971" 
+        ixx="0.00031006" ixy="0" ixz="0" 
+        iyy="0.00083377" iyz="0" izz="0.00055215"/>
+    
+        <xacro:continuous_link 
+        name="motor_05" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${motor}" 
+        joint_xyz="0.1395 0 0.1" joint_rpy="0 ${-PI/2} 0" 
+        parent="motor_connector_02" 
+        collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.05 0.05 0.15"  
+        mass="0.61826506" 
+        ixx="0.00067265" ixy="0" ixz="0" 
+        iyy="0.0006728" iyz="0" izz="0.00080351"
+        axis_xyz="0 0 1" axis_rpy="0 0 0"/>
+    
+        <xacro:fixed_link 
+        name="end_effector_connector" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${end_effector_connector}" 
+        joint_xyz="0 0 0" joint_rpy="0 0 ${-PI/2}" 
+        parent="motor_05" 
+        collision_xyz="0 0 0" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+        mass="0.30502898" 
+        ixx="0.00027224" ixy="0" ixz="0" 
+        iyy="0.00042032" iyz="0" izz="0.00020714"/>
+
+        <transmission name="motor_01_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="motor_01_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="motor1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+            </actuator>
+        </transmission>
+        
+        <transmission name="motor_02_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="motor_02_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="motor2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+            </actuator>
+        </transmission>
+
+        <transmission name="motor_03_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="motor_03_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="motor3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+            </actuator>
+        </transmission>
+
+        <transmission name="motor_04_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="motor_04_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="motor4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+            </actuator>
+        </transmission>
+
+        <transmission name="motor_05_trans">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="motor_05_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="motor5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+            </actuator>
+        </transmission>
+    
+</robot>
