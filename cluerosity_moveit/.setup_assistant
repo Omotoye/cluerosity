@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: cluerosity_description
+    relative_path: urdf/cluerosity_manipulator.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/cluerosity_manipulator.srdf
+  CONFIG:
+    author_name: "Omotoye Shamsudeen Adekoya "
+    author_email: adekoyaomotoye@gmail.com
+    generated_timestamp: 1650797866

@@ -1,0 +1,17 @@
+controller_list:
+  - name: fake_investigator_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - motor_01_joint
+      - motor_02_joint
+      - motor_03_joint
+      - motor_04_joint
+      - motor_05_joint
+  - name: fake_Explorer_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - gimbal_axle_joint
+      - sensor_housing_joint
+initial:  # Define initial robot poses per group
+  - group: investigator
+    pose: tall_arm

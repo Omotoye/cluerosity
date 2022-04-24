@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="cluerosity_manipulator">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="investigator">
+        <chain base_link="base_link" tip_link="end_effector_connector"/>
+    </group>
+    <group name="Explorer">
+        <chain base_link="gimbal_base" tip_link="sensor_housing"/>
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="tall_arm" group="investigator">
+        <joint name="motor_01_joint" value="0"/>
+        <joint name="motor_02_joint" value="-1.5707"/>
+        <joint name="motor_03_joint" value="1.5707"/>
+        <joint name="motor_04_joint" value="0"/>
+        <joint name="motor_05_joint" value="0"/>
+    </group_state>
+    <group_state name="relax_arm" group="investigator">
+        <joint name="motor_01_joint" value="0"/>
+        <joint name="motor_02_joint" value="-1.5707"/>
+        <joint name="motor_03_joint" value="0"/>
+        <joint name="motor_04_joint" value="1.5707"/>
+        <joint name="motor_05_joint" value="0"/>
+    </group_state>
+    <group_state name="default_arm" group="investigator">
+        <joint name="motor_01_joint" value="0"/>
+        <joint name="motor_02_joint" value="0"/>
+        <joint name="motor_03_joint" value="0"/>
+        <joint name="motor_04_joint" value="0"/>
+        <joint name="motor_05_joint" value="0"/>
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="sherlock" parent_link="base_footprint" group="investigator"/>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="end_effector_connector" reason="Never"/>
+    <disable_collisions link1="base_link" link2="front_shaft" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="gimbal_axle" reason="Default"/>
+    <disable_collisions link1="base_link" link2="gimbal_base" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="left_front_wheel" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="left_rear_wheel" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="lidar_base" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="lidar_sensor" reason="Never"/>
+    <disable_collisions link1="base_link" link2="link_01" reason="User"/>
+    <disable_collisions link1="base_link" link2="link_02" reason="Never"/>
+    <disable_collisions link1="base_link" link2="motor_01" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="motor_02" reason="User"/>
+    <disable_collisions link1="base_link" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="base_link" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="base_link" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="base_link" link2="motor_connector_01" reason="User"/>
+    <disable_collisions link1="base_link" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="base_link" link2="rear_shaft" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="right_front_wheel" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="right_rear_wheel" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="base_link" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="front_shaft" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="gimbal_axle" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="gimbal_base" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="left_front_wheel" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="left_rear_wheel" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="lidar_base" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="lidar_sensor" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="link_01" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="link_02" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="motor_05" reason="Adjacent"/>
+    <disable_collisions link1="end_effector_connector" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="end_effector_connector" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="gimbal_axle" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="gimbal_base" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="left_front_wheel" reason="Default"/>
+    <disable_collisions link1="front_shaft" link2="left_rear_wheel" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="lidar_base" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="lidar_sensor" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="link_01" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="link_02" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="right_front_wheel" reason="Default"/>
+    <disable_collisions link1="front_shaft" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="front_shaft" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="gimbal_base" reason="Adjacent"/>
+    <disable_collisions link1="gimbal_axle" link2="left_front_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="left_rear_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="lidar_base" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="lidar_sensor" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="link_01" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="link_02" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_axle" link2="sensor_housing" reason="User"/>
+    <disable_collisions link1="gimbal_axle" link2="stepper_motor" reason="Adjacent"/>
+    <disable_collisions link1="gimbal_base" link2="left_front_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="left_rear_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="lidar_base" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="lidar_sensor" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="link_01" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="link_02" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="gimbal_base" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="left_rear_wheel" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="lidar_base" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="lidar_sensor" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="link_01" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="link_02" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="left_front_wheel" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="lidar_base" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="lidar_sensor" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="link_01" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="link_02" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="rear_shaft" reason="Default"/>
+    <disable_collisions link1="left_rear_wheel" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="left_rear_wheel" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="lidar_sensor" reason="Adjacent"/>
+    <disable_collisions link1="lidar_base" link2="link_01" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="link_02" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="lidar_base" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="link_01" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="link_02" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="lidar_sensor" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="link_01" link2="link_02" reason="Default"/>
+    <disable_collisions link1="link_01" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="link_01" link2="motor_02" reason="Adjacent"/>
+    <disable_collisions link1="link_01" link2="motor_03" reason="Adjacent"/>
+    <disable_collisions link1="link_01" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="link_01" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="link_01" link2="motor_connector_01" reason="User"/>
+    <disable_collisions link1="link_01" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="link_01" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="link_01" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="link_01" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="link_01" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="link_01" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="link_02" link2="motor_01" reason="Never"/>
+    <disable_collisions link1="link_02" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="link_02" link2="motor_03" reason="Adjacent"/>
+    <disable_collisions link1="link_02" link2="motor_04" reason="Adjacent"/>
+    <disable_collisions link1="link_02" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="link_02" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="link_02" link2="motor_connector_02" reason="Default"/>
+    <disable_collisions link1="link_02" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="link_02" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="link_02" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="link_02" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="link_02" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="motor_02" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="motor_connector_01" reason="Adjacent"/>
+    <disable_collisions link1="motor_01" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="motor_01" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="motor_03" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="motor_connector_01" reason="Adjacent"/>
+    <disable_collisions link1="motor_02" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="motor_02" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="motor_04" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="motor_03" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="motor_04" link2="motor_05" reason="Never"/>
+    <disable_collisions link1="motor_04" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="motor_04" link2="motor_connector_02" reason="Adjacent"/>
+    <disable_collisions link1="motor_04" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="motor_04" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="motor_04" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="motor_04" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="motor_04" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="motor_05" link2="motor_connector_01" reason="Never"/>
+    <disable_collisions link1="motor_05" link2="motor_connector_02" reason="Adjacent"/>
+    <disable_collisions link1="motor_05" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="motor_05" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="motor_05" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="motor_05" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="motor_05" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="motor_connector_01" link2="motor_connector_02" reason="Never"/>
+    <disable_collisions link1="motor_connector_01" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="motor_connector_01" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="motor_connector_01" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="motor_connector_01" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="motor_connector_01" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="motor_connector_02" link2="rear_shaft" reason="Never"/>
+    <disable_collisions link1="motor_connector_02" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="motor_connector_02" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="motor_connector_02" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="motor_connector_02" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="rear_shaft" link2="right_front_wheel" reason="Never"/>
+    <disable_collisions link1="rear_shaft" link2="right_rear_wheel" reason="Default"/>
+    <disable_collisions link1="rear_shaft" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="rear_shaft" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="right_front_wheel" link2="right_rear_wheel" reason="Never"/>
+    <disable_collisions link1="right_front_wheel" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="right_front_wheel" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="right_rear_wheel" link2="sensor_housing" reason="Never"/>
+    <disable_collisions link1="right_rear_wheel" link2="stepper_motor" reason="Never"/>
+    <disable_collisions link1="sensor_housing" link2="stepper_motor" reason="Adjacent"/>
+</robot>

@@ -1,0 +1,18 @@
+controller_list:
+  - name: investigator_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - motor_01_joint
+      - motor_02_joint
+      - motor_03_joint
+      - motor_04_joint
+      - motor_05_joint
+  - name: Explorer_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: True
+    joints:
+      - gimbal_axle_joint
+      - sensor_housing_joint
