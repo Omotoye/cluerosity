@@ -1,0 +1,23 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <transmission name="sensor_housing_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="sensor_housing_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor7">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission>
+
+    <transmission name="gimbal_axle_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="gimbal_axle_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission>
+</robot>

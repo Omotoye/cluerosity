@@ -2,8 +2,154 @@
 <robot name="cluerosity_manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <!-- Includes -->
-    <xacro:include filename="$(find cluerosity_description)/urdf/cluerosity.xacro" />
-    <xacro:include filename="$(find cluerosity_description)/urdf/transmission.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/meshes.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/materials.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/visual.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/physics.xacro" />    
+    <xacro:include filename="$(find cluerosity_description)/urdf/wheels.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/cluerosity_links.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/cluerosity.gazebo" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/manipulator_transmission.xacro" />
+    <xacro:include filename="$(find cluerosity_description)/urdf/gimbal_transmission.xacro" />
+
+    
+    <!-- Properties -->
+    <xacro:property name="PI" value="3.14159265359" />
+
+    <!-- 
+        +=====================+
+        |      Base Link      |
+        +=====================+ 
+    -->
+    <xacro:base_link mesh_name="${robot_base}"/>
+
+
+    <!-- 
+        +=====================+
+        |     Wheel Shaft     |
+        +=====================+ 
+    -->
+    <xacro:cluerosity_shaft 
+        name="front_shaft" 
+        joint_xyz="0.350 0 0.05" />
+
+    <xacro:cluerosity_shaft 
+        name="rear_shaft" 
+        joint_xyz="-0.20 0 0.05" />
+
+
+    <!-- 
+        +=====================+
+        |   Wheel definition  |
+        +=====================+ 
+    -->
+
+    <!-- Right Front Wheel -->
+    <xacro:cluerosity_wheel 
+        name="right_front_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${PI/2} 0 ${-PI/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 0" 
+        joint_xyz="0.35 -0.30 0.05" joint_rpy="0 0 0" />
+
+    <!-- Right Rear Wheel -->
+    <xacro:cluerosity_wheel 
+        name="right_rear_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${PI/2} 0 ${-PI/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 0" 
+        joint_xyz="-0.20 -0.30 0.05" joint_rpy="0 0 0" />
+
+    <!-- Left Front Wheel -->
+    <xacro:cluerosity_wheel 
+        name="left_front_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${PI/2} 0 ${-PI/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 ${PI}" 
+        joint_xyz="0.35 0.30 0.05" joint_rpy="0 0 0" />
+
+    <!-- Left Rear Wheel -->
+    <xacro:cluerosity_wheel 
+        name="left_rear_wheel" 
+        tyre_xyz="-0.14686986 0 0" tyre_rpy="${PI/2} 0 ${-PI/2}" 
+        rim_xyz="0 0 0" rim_rpy="0 0 ${PI}" 
+        joint_xyz="-0.20 0.30 0.05" joint_rpy="0 0 0" />
+
+
+    <!-- 
+        +=====================+
+        |   Sensor Gimbal     |
+        +=====================+ 
+    -->
+
+    <!-- Gimbal Base  -->
+    <xacro:gimbal_base />
+
+    <!-- Gimbal Axle  -->
+    <xacro:gimbal_axle mesh_name="${gimbal_axle}"/>
+
+    <!-- Gimbal Sensor Housing  -->
+    <xacro:sensor_housing mesh_name="${sensor_housing}" />
+
+    <!-- Stepper Motor -->
+    <xacro:fixed_link 
+        name="stepper_motor" 
+        link_xyz="0 0 0" link_rpy="0 ${PI/2} 0" 
+        mesh_name="${stepper_motor}" 
+        joint_xyz="-0.10 0 0.19" joint_rpy="0 0 0" 
+        parent="gimbal_axle" 
+        collision_xyz="0.0325 0 0" collision_rpy="0 ${PI/2} 0" collision_size="0.05 0.05 0.080"  
+        mass="0.20879833" 
+        ixx="0.0000978" ixy="0" ixz="0" 
+        iyy="0.0000978" iyz="0" izz="0.0000491"/>
+
+    <!-- Camera Sensor -->
+    <xacro:sensor_link 
+        name="camera_link" 
+        joint_xyz="0.035 -0.05 0.125" joint_rpy="0 0 ${-PI/2}"
+        parent="sensor_housing" />
+
+    <!-- RGB-D Camera  -->
+    <xacro:sensor_link 
+        name="camera_depth_link"
+        joint_xyz="0.05 0 0" joint_rpy="${-PI/2} 0 ${-PI/2}"
+        parent="camera_link"/>
+
+    <!-- Hokuyo Laser Scanner -->
+    <xacro:sensor_link 
+        name="hokuyo_link"  
+        joint_xyz="0.05 -0.05 0.035" joint_rpy="0 0 ${-PI/2}" 
+        parent="sensor_housing" />
+
+
+    <!-- 
+        +=======================+
+        | Velodyne LiDAR Sensor |
+        +=======================+ 
+    -->   
+
+    <!-- LiDAR Base -->
+    <xacro:fixed_link 
+        name="lidar_base" 
+        link_xyz="-0.075 0 0.05" link_rpy="0 ${PI} ${PI/2}" 
+        mesh_name="${lidar_base}" 
+        joint_xyz="-0.325 0.140 0.25" joint_rpy="0 0 0" 
+        parent="base_link"
+        collision_xyz="-0.135 0 0.025" collision_rpy="0 0 0" collision_size="0.270 0.120 0.05"  
+        mass="0.93983878" 
+        ixx="0.00318358" ixy="0" ixz="0" 
+        iyy="0.00133395" iyz="0.00023839" izz="0.0040904" />
+
+    <!-- LiDAR Sensor -->
+    <xacro:fixed_link 
+        name="lidar_sensor" 
+        link_xyz="0 0 0" link_rpy="0 0 0" 
+        mesh_name="${lidar_sensor}" 
+        joint_xyz="-0.2 0 0.05" joint_rpy="0 0 0" 
+        parent="lidar_base" 
+        collision_xyz="0 0 0.0375" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
+        mass="0.61826506" 
+        ixx="0.00067265" ixy="0" ixz="0" 
+        iyy="0.0006728" iyz="0" izz="0.00080351"/>
+
+
     <!-- 
         +=======================+
         |       Manipulator      |
