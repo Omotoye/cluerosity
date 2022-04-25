@@ -6,6 +6,12 @@ investigator_controller:
     - motor_03_joint
     - motor_04_joint
     - motor_05_joint
+
+  constraints:
+      # goal_time: 0.6
+      # vel_tolerance is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+      stopped_velocity_tolerance: 0
+
   gains:
     motor_01_joint:
       p: 100
@@ -37,6 +43,12 @@ Explorer_controller:
   joints:
     - gimbal_axle_joint
     - sensor_housing_joint
+
+  constraints:
+      # goal_time: 0.6
+      # vel_tolerance is 0 for due to the movegroup/follow_joint_trajectory/goal tolerance is empty
+      stopped_velocity_tolerance: 0
+
   gains:
     gimbal_axle_joint:
       p: 100
