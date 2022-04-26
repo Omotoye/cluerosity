@@ -12,6 +12,9 @@
     <!-- Choose robot type -->
     <arg name="type" default="explorer" />
 
+    <!-- Choose Investigator Manipulator Initialization Pose -->
+    <arg name="arm_pose" default="relax arm" />
+
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(arg sim_world)" />
         <arg name="paused" value="false" />
@@ -28,7 +31,7 @@
             <arg name="x" value="$(arg x)" />
             <arg name="y" value="$(arg y)" />
             <arg name="z" value="$(arg z)" />
-            <arg name="model" value="$(arg model)"/>
+            <arg name="model" value="$(arg model)" />
         </include>
     </group>
 
@@ -39,13 +42,13 @@
             <arg name="x" value="$(arg x)" />
             <arg name="y" value="$(arg y)" />
             <arg name="z" value="$(arg z)" />
-            <arg name="model" value="$(arg model)"/>
+            <arg name="model" value="$(arg model)" />
         </include>
     </group>
 
 
     <group if="$(eval type == 'investigator')">
-        <rosparam file="$(find cluerosity_description)/config/motors_config.yaml" command="load" ns="/cluerosity" />
+        <rosparam file="$(find cluerosity_control)/config/motors_config.yaml" command="load" ns="/cluerosity" />
 
         <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="--namespace=/cluerosity
         joint_state_controller
@@ -56,10 +59,12 @@
         joint5_position_controller
         joint6_position_controller
         joint7_position_controller"></node>
+
+        <node name="arm_initializer" pkg="cluerosity_control" type="arm_initializer.py" output="screen" args="'$(arg arm_pose)'" />
     </group>
 
     <group if="$(eval type == 'explorer')">
-        <rosparam file="$(find cluerosity_description)/config/motors_config.yaml" command="load" ns="/cluerosity" />
+        <rosparam file="$(find cluerosity_control)/config/motors_config.yaml" command="load" ns="/cluerosity" />
 
         <node name="controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="--namespace=/cluerosity
         joint_state_controller
