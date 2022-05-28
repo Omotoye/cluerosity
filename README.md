@@ -36,11 +36,14 @@ Attached below are fun _.gifs_ files that show the timeline of the design of the
 
 <br/>
 
+<img src="images/version-1.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor"  alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" />
+    
+<img src="images/version-2.gif" width="50%" height="50%"  title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" />
 
-<img src="images/version-1.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" ><img src="images/version-2.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
-
-<img src="images/version-3.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" ><img src="images/version-4.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
-
+<img src="images/version-3.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
+    
+<img src="images/version-4.gif" width="50%" height="50%" title="Cluerosity Robot equipped with LiDAR, camera and laser sensor" alt="Cluerosity Robot equipped with LiDAR, camera and laser sensor" >
+ 
 
 ### Sensor Housing
 
@@ -116,9 +119,12 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 
 if everything was done properly, it should look something like what is in the video below.
-    
+  
+<details><summary>Gmapping Demo Video</summary>
+        
+        
 https://user-images.githubusercontent.com/67521465/164301875-b0b6d5cc-7908-4606-bf33-3176e75f107a.mp4
-
+</details>
 
 - [karto-slam](http://wiki.ros.org/slam_karto); KartoSLAM is a graph-based SLAM approach developed by SRI International’s Karto Robotics, which has been extended for ROS by using a highly-optimized and
 noniterative Cholesky matrix decomposition for sparse linear systems as its solver 
@@ -136,11 +142,10 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
 if everything was done properly, it should look something like what is in the video below. 
     
-    
+ <details><summary>Karto-Slam Demo Video</summary>   
 
 https://user-images.githubusercontent.com/67521465/164304709-c04feca5-eab7-4b3e-a480-8ea28310ee96.mp4
-
-
+</details>
 
 - [octomap](http://wiki.ros.org/octomap); The Octomap library implements a 3D occupancy grid mapping approach, based on an octree, with the following 
 feature:
@@ -178,10 +183,10 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
 if everything was done properly, it should look something like what is in the video below. 
     
-    
+ <details><summary>Octomap Demo Video</summary>   
 
 https://user-images.githubusercontent.com/67521465/164307763-33b2944a-092f-40ac-9fce-feb2058f2ed0.mp4
-
+</details>
 
 
 
@@ -207,10 +212,10 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 
 if everything was done properly, it should look something like what is in the video below. 
     
-    
+<details><summary>slam-toolbox Demo Video</summary>   
 
 https://user-images.githubusercontent.com/67521465/164309605-f8d5bda9-1361-4187-8908-ac03a784183e.mp4
-
+</details>
 
 
 ## cluerosity_navigation 
@@ -227,10 +232,10 @@ roslaunch cluerosity_navigation move_base_demo.launch
 
 After launching the package, see the video below to see how to send a goal coordinate from `rviz`
     
-    
+<details><summary>Navigation Demo Video</summary>   
 
 https://user-images.githubusercontent.com/67521465/164321309-a2d68918-f659-4838-9594-b7355223ad9f.mp4
-
+</details>
 
 
 Enter the command below to see the demo for launching the `explore-lite` package to map an environment. 
@@ -240,8 +245,12 @@ roslaunch cluerosity_navigation explorer_demo.launch
 ```
 see the video of the demo below. 
 
+<details><summary>Explorer Demo Video</summary>
+    
+    
 https://user-images.githubusercontent.com/67521465/164319491-154e5427-87f0-4bed-bf90-aa110ec8ef3e.mp4
-
+</details>
+    
 ## cluerosity_moveit  <img src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" width="20">
 
 🚧 working on it... <img src="https://www.herhairpin.com/wp-content/uploads/2022/01/under_construction_PA_300_wht.gif" width="100">
