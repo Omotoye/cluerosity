@@ -286,9 +286,9 @@ SLAM_packages _(from Prof Carmine's github)_, it contains almost all the depende
 
 ```bash
 cd ~/catkin_ws/src
+git clone https://github.com/CarmineD8/SLAM_packages
 cd ~/catkin_ws/src/SLAM_packages
 git checkout noetic 
-git clone https://github.com/CarmineD8/SLAM_packages
 ```
 ```bash
 sudo apt-get install libsuitesparse-dev 
