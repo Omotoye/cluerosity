@@ -82,11 +82,41 @@
     <!-- Gimbal Base  -->
     <xacro:gimbal_base />
 
+    <xacro:gimbal_base_b />
+
+    <xacro:gimbal_base_c />
+
     <!-- Gimbal Axle  -->
     <xacro:gimbal_axle mesh_name="${gimbal_axle}"/>
 
     <!-- Gimbal Sensor Housing  -->
     <xacro:sensor_housing mesh_name="${sensor_housing}" />
+
+     <!-- Testing the Sensor height adjuster -->
+     <!-- <xacro:prismatic_link
+        name="lifter_1"
+        link_xyz="0 0 0" link_rpy="0 ${PI/2} 0"
+        joint_xyz="0 0 0" joint_rpy="0 ${PI/2} 0"
+        parent="gimbal_base"
+        length="0.25" radius="0.03"
+        mass="0.5"
+        ixx="0.0000978" ixy="0" ixz="0"
+        iyy="0.0000978" iyz="0" izz="0.0000491"
+        lower="2" upper="-2" /> -->
+
+    
+<!-- 
+<xacro:prismatic_link
+        name="lifter"
+        link_xyz="0 0 0" link_rpy="0 ${PI/2} 0"
+        joint_xyz="-0.28 0 0" joint_rpy="0 0 0"
+        parent="gimbal_base_b"
+        length="0.4" radius="0.02"
+        mass="2.5"
+        ixx="0.0000978" ixy="0" ixz="0"
+        iyy="0.0000978" iyz="0" izz="0.0000491"
+        lower="0.1" upper="-0.1" />
+ -->
 
     <!-- Stepper Motor -->
     <xacro:fixed_link 
@@ -105,6 +135,13 @@
         name="camera_link" 
         joint_xyz="0.035 -0.05 0.125" joint_rpy="0 0 ${-PI/2}"
         parent="sensor_housing" />
+
+     <xacro:sensor_link 
+        name="rear_camera_link" 
+        joint_xyz="-0.325 0.140 0.25" joint_rpy="0 0 ${PI-0.5}"
+        parent="base_link" />
+
+   
 
     <!-- RGB-D Camera  -->
     <xacro:sensor_link 
@@ -126,7 +163,7 @@
     -->   
 
     <!-- LiDAR Base -->
-    <xacro:fixed_link 
+    <!-- <xacro:fixed_link 
         name="lidar_base" 
         link_xyz="-0.075 0 0.05" link_rpy="0 ${PI} ${PI/2}" 
         mesh_name="${lidar_base}" 
@@ -136,9 +173,9 @@
         mass="0.93983878" 
         ixx="0.00318358" ixy="0" ixz="0" 
         iyy="0.00133395" iyz="0.00023839" izz="0.0040904" />
-
+ -->
     <!-- LiDAR Sensor -->
-    <xacro:fixed_link 
+    <!-- <xacro:fixed_link 
         name="lidar_sensor" 
         link_xyz="0 0 0" link_rpy="0 0 0" 
         mesh_name="${lidar_sensor}" 
@@ -147,5 +184,5 @@
         collision_xyz="0 0 0.0375" collision_rpy="0 0 0" collision_size="0.105 0.105 0.075"  
         mass="0.61826506" 
         ixx="0.00067265" ixy="0" ixz="0" 
-        iyy="0.0006728" iyz="0" izz="0.00080351"/>    
+        iyy="0.0006728" iyz="0" izz="0.00080351"/>     -->
 </robot>

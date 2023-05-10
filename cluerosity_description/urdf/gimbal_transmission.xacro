@@ -20,4 +20,15 @@
             <mechanicalInterface>1</mechanicalInterface>
         </actuator>
     </transmission>
+
+    <!-- <transmission name="lifter_trans">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="lifter_joint">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor8">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalInterface>1</mechanicalInterface>
+        </actuator>
+    </transmission> -->
 </robot>

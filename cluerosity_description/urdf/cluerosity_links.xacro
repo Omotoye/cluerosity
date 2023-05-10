@@ -7,19 +7,20 @@
         +==========================+ 
     -->
 
-    <xacro:macro name="fixed_link" params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent">
+    <xacro:macro name="fixed_link"
+        params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent">
         <link name="${name}">
-            <xacro:mesh_link 
-                xyz="${link_xyz}" rpy="${link_rpy}" 
-                mesh_name="${mesh_name}"/>
-            <xacro:box_collision 
-                xyz="${collision_xyz}" rpy="${collision_rpy}"  
-                box_size="${collision_size}"/>
-            <xacro:link_inertia 
-                xyz="${collision_xyz}" rpy="${collision_rpy}"  
-                mass="${mass}" 
-                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"  
-                iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+            <xacro:mesh_link
+                xyz="${link_xyz}" rpy="${link_rpy}"
+                mesh_name="${mesh_name}" />
+            <xacro:box_collision
+                xyz="${collision_xyz}" rpy="${collision_rpy}"
+                box_size="${collision_size}" />
+            <xacro:link_inertia
+                xyz="${collision_xyz}" rpy="${collision_rpy}"
+                mass="${mass}"
+                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"
+                iyy="${iyy}" iyz="${iyz}" izz="${izz}" />
         </link>
 
         <joint name="${name}_joint" type="fixed">
@@ -36,19 +37,20 @@
         +==========================+ 
     -->
 
-    <xacro:macro name="continuous_link" params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent axis_xyz axis_rpy">
+    <xacro:macro name="continuous_link"
+        params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent axis_xyz axis_rpy">
         <link name="${name}">
-            <xacro:mesh_link 
-                xyz="${link_xyz}" rpy="${link_rpy}" 
-                mesh_name="${mesh_name}"/>
-            <xacro:box_collision 
-                xyz="${collision_xyz}" rpy="${collision_rpy}"  
-                box_size="${collision_size}"/>
-            <xacro:link_inertia 
-                xyz="${collision_xyz}" rpy="${collision_rpy}"  
-                mass="${mass}" 
-                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"  
-                iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+            <xacro:mesh_link
+                xyz="${link_xyz}" rpy="${link_rpy}"
+                mesh_name="${mesh_name}" />
+            <xacro:box_collision
+                xyz="${collision_xyz}" rpy="${collision_rpy}"
+                box_size="${collision_size}" />
+            <xacro:link_inertia
+                xyz="${collision_xyz}" rpy="${collision_rpy}"
+                mass="${mass}"
+                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"
+                iyy="${iyy}" iyz="${iyz}" izz="${izz}" />
         </link>
 
         <joint name="${name}_joint" type="continuous">
@@ -65,19 +67,20 @@
         +==========================+ 
     -->
 
-    <xacro:macro name="revolute_link" params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent axis_xyz axis_rpy lower upper">
+    <xacro:macro name="revolute_link"
+        params="name link_xyz link_rpy joint_xyz joint_rpy mesh_name collision_xyz collision_rpy collision_size mass ixx ixy ixz iyy iyz izz parent axis_xyz axis_rpy lower upper">
         <link name="${name}">
-            <xacro:mesh_link 
-                xyz="${link_xyz}" rpy="${link_rpy}" 
-                mesh_name="${mesh_name}"/>
-            <xacro:box_collision 
-                xyz="${collision_xyz}" rpy="${collision_rpy}"  
-                box_size="${collision_size}"/>
-            <xacro:link_inertia 
-                xyz="${collision_xyz}" rpy="${collision_rpy}"  
-                mass="${mass}" 
-                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"  
-                iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+            <xacro:mesh_link
+                xyz="${link_xyz}" rpy="${link_rpy}"
+                mesh_name="${mesh_name}" />
+            <xacro:box_collision
+                xyz="${collision_xyz}" rpy="${collision_rpy}"
+                box_size="${collision_size}" />
+            <xacro:link_inertia
+                xyz="${collision_xyz}" rpy="${collision_rpy}"
+                mass="${mass}"
+                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"
+                iyy="${iyy}" iyz="${iyz}" izz="${izz}" />
         </link>
 
         <joint name="${name}_joint" type="revolute">
@@ -85,11 +88,47 @@
             <child link="${name}" />
             <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
             <axis xyz="${axis_xyz}" rpy="${axis_rpy}" />
-            <limit effort="1000.0" lower="${lower}" upper="${upper}" velocity="0.5" /> -->
+            <limit effort="1000.0" lower="${lower}" upper="${upper}" velocity="0.5" />
         </joint>
     </xacro:macro>
 
-    
+    <!-- 
+        +===========================+
+        |  Prismatic Link Macro    |
+        +==========================+ 
+    -->
+
+    <xacro:macro name="prismatic_link"
+        params="name link_xyz link_rpy joint_xyz joint_rpy length radius mass ixx ixy ixz iyy iyz izz parent lower upper">
+        <link name="${name}">
+            <xacro:cylinder_link
+                xyz="${link_xyz}" rpy="${link_rpy}"
+                length="${length}"
+                radius="${radius}"
+                material_name="dark_gray" />
+
+            <xacro:cylinder_collision
+                xyz="${link_xyz}" rpy="${link_rpy}"
+                length="${length}"
+                radius="${radius}" />
+            <xacro:link_inertia
+                xyz="${link_xyz}" rpy="${link_rpy}"
+                mass="${mass}"
+                ixx="${ixx}" ixy="${ixy}" ixz="${ixz}"
+                iyy="${iyy}" iyz="${iyz}" izz="${izz}" />
+        </link>
+
+        <joint name="${name}_joint" type="prismatic">
+            <parent link="${parent}" />
+            <child link="${name}" />
+            <origin xyz="${joint_xyz}"
+                rpy="${joint_rpy}" />
+            <limit
+                effort="1000.0" lower="${lower}" upper="${upper}" velocity="0.5" />
+        </joint>
+    </xacro:macro>
+
+
     <!-- 
         +==============================================+
         |      Base Link and Base footprint Macro      |
@@ -98,23 +137,23 @@
 
     <xacro:macro name="base_link" params="mesh_name">
         <link name="base_link">
-            <xacro:mesh_link 
-                xyz="0 0 0.15" rpy="0 ${PI} ${-PI/2}" 
-                mesh_name="${mesh_name}"/>
-            <xacro:box_collision 
-                xyz="0 0 0.075" rpy="0 0 0"  
-                box_size="0.8 0.4 0.15"/>
-            <xacro:box_collision 
-                xyz="-0.325 0.14 0.2" rpy="0 0 0"  
-                box_size="0.15 0.12 0.1"/>
-            <xacro:box_collision 
-                xyz="0.45 0.1 0.05" rpy="0 0 0"  
-                box_size="0.1 0.1 0.05"/>
-            <xacro:link_inertia 
-                xyz="0 0 0.075" rpy="0 0 0"  
-                mass="56.77662104" 
-                ixx="2.64" ixy="0.221" ixz="0.046"  
-                iyy="0.907" iyz="-0.237"  izz="3.303"/>
+            <xacro:mesh_link
+                xyz="0 0 0.15" rpy="0 ${PI} ${-PI/2}"
+                mesh_name="${mesh_name}" />
+            <xacro:box_collision
+                xyz="0 0 0.075" rpy="0 0 0"
+                box_size="0.8 0.4 0.15" />
+            <xacro:box_collision
+                xyz="-0.325 0.14 0.2" rpy="0 0 0"
+                box_size="0.15 0.12 0.1" />
+            <xacro:box_collision
+                xyz="0.45 0.1 0.05" rpy="0 0 0"
+                box_size="0.1 0.1 0.05" />
+            <xacro:link_inertia
+                xyz="0 0 0.075" rpy="0 0 0"
+                mass="56.77662104"
+                ixx="2.64" ixy="0.221" ixz="0.046"
+                iyy="0.907" iyz="-0.237" izz="3.303" />
         </link>
 
         <!-- Base footprint is on the ground under the robot -->
@@ -137,18 +176,18 @@
     <!-- Gimbal Base  -->
     <xacro:macro name="gimbal_base">
         <link name="gimbal_base">
-            <xacro:box_link 
-                xyz="0 0 0.025" rpy="0 0 0" 
+            <xacro:box_link
+                xyz="0 0 0.025" rpy="0 0 0"
                 box_size="0.1 0.1 0.05"
-                material_name="dark_gray"/>
-            <xacro:box_collision 
-                xyz="0 0 0.025" rpy="0 0 0" 
-                box_size="0.1 0.1 0.05"/>
-            <xacro:link_inertia 
-                xyz="0 0 0.025" rpy="0 0 0" 
-                mass="3.4875" 
-                ixx="0.004" ixy="0" ixz="0"  
-                iyy="0.004" iyz="0"  izz="0.006"/>
+                material_name="dark_gray" />
+            <xacro:box_collision
+                xyz="0 0 0.025" rpy="0 0 0"
+                box_size="0.1 0.1 0.05" />
+            <xacro:link_inertia
+                xyz="0 0 0.025" rpy="0 0 0"
+                mass="3.4875"
+                ixx="0.004" ixy="0" ixz="0"
+                iyy="0.004" iyz="0" izz="0.006" />
         </link>
 
         <joint name="gimbal_base_joint" type="fixed">
@@ -158,26 +197,74 @@
         </joint>
     </xacro:macro>
 
+    <xacro:macro name="gimbal_base_b">
+        <link name="gimbal_base_b">
+            <xacro:cylinder_link
+                xyz="-0.1 0 0" rpy="0 ${PI/2} 0"
+                length="0.5" radius="0.03"
+                material_name="dark_gray" />
+            <!-- <xacro:cylinder_collision
+                xyz="-0.1 0 0" rpy="0 ${PI/2} 0"
+                length="0.25" radius="0.03" /> -->
+            <xacro:link_inertia
+                xyz="0 0 0.025" rpy="0 0 0"
+                mass="3.5"
+                ixx="0.004" ixy="0" ixz="0"
+                iyy="0.004" iyz="0" izz="0.006" />
+        </link>
+
+        <joint name="gimbal_base_b_joint" type="fixed">
+            <parent link="gimbal_base" />
+            <child link="gimbal_base_b" />
+            <origin xyz="0 0 0.2" rpy="0 ${PI/2} 0" />
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="gimbal_base_c">
+        <link name="gimbal_base_c">
+            <xacro:cylinder_link
+                xyz="0 0 0" rpy="0 ${PI/2} 0"
+                length="0.8" radius="0.02"
+                material_name="dark_gray" />
+            <!-- <xacro:cylinder_collision
+                xyz="-0.1 0 0" rpy="0 ${PI/2} 0"
+                length="0.25" radius="0.03" /> -->
+            <xacro:link_inertia
+                xyz="0 0 0" rpy="0 ${PI/2} 0"
+                mass="2.5"
+                ixx="0.004" ixy="0" ixz="0"
+                iyy="0.004" iyz="0" izz="0.006" />
+        </link>
+
+        <joint name="gimbal_base_c_joint" type="fixed">
+            <parent link="gimbal_base_b" />
+            <child link="gimbal_base_c" />
+            <origin xyz="-0.28 0 0" rpy="0 0 0" />
+        </joint>
+    </xacro:macro>
+
+
+
     <!-- Gimbal Axle -->
     <xacro:macro name="gimbal_axle" params="mesh_name">
         <link name="gimbal_axle">
-            <xacro:mesh_link 
-                xyz="0 0 0" rpy="0 0 0" 
-                mesh_name="${mesh_name}"/>
-            <xacro:box_collision 
-                xyz="0 0 0.12" rpy="0 0 0" 
-                box_size="0.07 0.07 0.190"/>
-            <xacro:link_inertia 
-                xyz="0 0 0.12" rpy="0 0 0" 
-                mass="0.86030554" 
-                ixx="0.00159531" ixy="0" ixz="0"  
-                iyy="0.00204855" iyz="0"  izz="0.00078318"/>
+            <xacro:mesh_link
+                xyz="0 0 0" rpy="0 0 0"
+                mesh_name="${mesh_name}" />
+            <xacro:box_collision
+                xyz="0 0 0.12" rpy="0 0 0"
+                box_size="0.07 0.07 0.190" />
+            <xacro:link_inertia
+                xyz="0 0 0.12" rpy="0 0 0"
+                mass="0.86030554"
+                ixx="0.00159531" ixy="0" ixz="0"
+                iyy="0.00204855" iyz="0" izz="0.00078318" />
         </link>
 
         <joint name="gimbal_axle_joint" type="continuous">  <!-- change back to "continuous" -->
-            <parent link="gimbal_base" />
+            <parent link="gimbal_base_c" />
             <child link="gimbal_axle" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
+            <origin xyz="-0.3 0 0" rpy="0 -${PI/2} 0" />
             <axis xyz="0 0 1" rpy="0 0 0" />
         </joint>
     </xacro:macro>
@@ -185,17 +272,17 @@
     <!-- Sensor Housing -->
     <xacro:macro name="sensor_housing" params="mesh_name">
         <link name="sensor_housing">
-            <xacro:mesh_link 
-                xyz="0 0 0.053" rpy="0 0 0" 
-                mesh_name="${mesh_name}"/>
-            <xacro:box_collision 
-                xyz="0 0 0.105" rpy="0 0 0" 
-                box_size="0.200 0.100 0.150"/>
-            <xacro:link_inertia 
-                xyz="0 0 0.105" rpy="0 0 0" 
-                mass="2.14582602" 
-                ixx="0.00498945" ixy="-0.00002479" ixz="0.0002252"  
-                iyy="0.00883757" iyz="-0.00005538"  izz="0.00675851"/>
+            <xacro:mesh_link
+                xyz="0 0 0.053" rpy="0 0 0"
+                mesh_name="${mesh_name}" />
+            <xacro:box_collision
+                xyz="0 0 0.105" rpy="0 0 0"
+                box_size="0.200 0.100 0.150" />
+            <xacro:link_inertia
+                xyz="0 0 0.105" rpy="0 0 0"
+                mass="2.14582602"
+                ixx="0.00498945" ixy="-0.00002479" ixz="0.0002252"
+                iyy="0.00883757" iyz="-0.00005538" izz="0.00675851" />
         </link>
 
         <joint name="sensor_housing_joint" type="revolute"> <!-- change back to "revolute" -->
@@ -203,7 +290,7 @@
             <child link="sensor_housing" />
             <origin xyz="0.122 0 0" rpy="0 0 0" />
             <axis xyz="1 0 0" rpy="0 0 0" />
-            <limit effort="1000.0" lower="-0.35" upper="0.35" velocity="0.5" />
+            <limit effort="1000.0" lower="-0.7" upper="1.0" velocity="0.5" />
         </joint>
     </xacro:macro>
 
@@ -232,28 +319,30 @@
     </xacro:macro>
 
 
-    <xacro:macro name="motor_link" params="name joint_xyz joint_rpy parent axis_xyz axis_rpy lower upper">
+    <xacro:macro name="motor_link"
+        params="name joint_xyz joint_rpy parent axis_xyz axis_rpy lower upper">
         <link name="${name}">
-            <xacro:mesh_link 
-                xyz="0 0 0" rpy="0 0 0" 
-                mesh_name="${motor}"/>
-            <xacro:box_collision 
-                xyz="0 0 0" rpy="0 0 0"  
-                box_size="0.065 0.065 0.1"/>
-            <xacro:link_inertia 
-                xyz="0 0 0" rpy="0 0 0"  
-                mass="0.33104028" 
-                ixx="0.00022976" ixy="0" ixz="0" 
-                iyy="0.00022976" iyz="0" izz="0.00011672"/>
+            <xacro:mesh_link
+                xyz="0 0 0" rpy="0 0 0"
+                mesh_name="${motor}" />
+            <xacro:box_collision
+                xyz="0 0 0" rpy="0 0 0"
+                box_size="0.065 0.065 0.1" />
+            <xacro:link_inertia
+                xyz="0 0 0" rpy="0 0 0"
+                mass="0.33104028"
+                ixx="0.00022976" ixy="0" ixz="0"
+                iyy="0.00022976" iyz="0" izz="0.00011672" />
         </link>
 
         <joint name="${name}_joint" type="revolute">
             <parent link="${parent}" />
             <child link="${name}" />
-            <origin xyz="${joint_xyz}" rpy="${joint_rpy}" />
+            <origin xyz="${joint_xyz}"
+                rpy="${joint_rpy}" />
             <axis xyz="${axis_xyz}" rpy="${axis_rpy}" />
-            <limit effort="1000.0" lower="${lower}" upper="${upper}" velocity="0.5" /> -->
-        </joint>
+            <limit
+                effort="1000.0" lower="${lower}" upper="${upper}" velocity="0.5" /> --> </joint>
     </xacro:macro>
 
 </robot>
